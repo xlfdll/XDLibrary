@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B82EB204-2388-4BCF-B138-EF627FD1F775}</ProjectGuid>
+    <ProjectGuid>{45D5FF47-C644-4449-83FA-9D25DD66D9A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Xlfdll.Core</RootNamespace>
-    <AssemblyName>Xlfdll.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <RootNamespace>Xlfdll.Data.Access</RootNamespace>
+    <AssemblyName>Xlfdll.Data.Access</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,32 +28,22 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ApplicationConfiguration.cs" />
-    <Compile Include="Configuration\ApplicationSettings.cs" />
-    <Compile Include="Configuration\Configuration.cs" />
-    <Compile Include="Configuration\ConfigurationSection.cs" />
-    <Compile Include="Configuration\IConfigurationProcessor.cs" />
-    <Compile Include="Data\IDirectDataOperator.cs" />
-    <Compile Include="Data\IQueuedDataOperator.cs" />
-    <Compile Include="Diagnostics\AssemblyMetadata.cs" />
-    <Compile Include="Diagnostics\ProcessHelper.cs" />
-    <Compile Include="Infrastructure\Text\AdditionalEncodings.cs" />
-    <Compile Include="Infrastructure\Collections\ByteArrayOperations.cs" />
-    <Compile Include="Infrastructure\Collections\EnumerableExtensions.cs" />
-    <Compile Include="Infrastructure\ObservableObject.cs" />
-    <Compile Include="Infrastructure\Text\StringExtensions.cs" />
-    <Compile Include="IO\FileInfoExtensions.cs" />
-    <Compile Include="Network\WebOperations.cs" />
+    <Compile Include="AccessDirectDataOperator.cs" />
+    <Compile Include="AccessSystemConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Xlfdll.Core\Xlfdll.Core.csproj">
+      <Project>{B82EB204-2388-4BCF-B138-EF627FD1F775}</Project>
+      <Name>Xlfdll.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
