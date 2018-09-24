@@ -13,7 +13,7 @@ This repository contains common code files used by other XDWS projects in .NET p
 ## Development Prerequisites
 For most of the .NET components, the following platforms are recommended:
 
-* **.NET Framework 4.6.2+**
+* **.NET Framework 4.7.2+**
 * **Visual Studio 2015+**
 
 Most of the methods and data types should be able to work in latest .NET Core platform, though this is not tested yet. The majority of the code files should also be able to use in older versions of .NET Framework, with no or minor modifications (possibly except the ones that use latest C# language features, such as ObservableObject class in Xlfdll.Windows.Presentation component). 
