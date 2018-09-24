@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Xlfdll.Core
+namespace Xlfdll.Configuration
 {
     public class ConfigurationSection : Dictionary<String, String>
     {

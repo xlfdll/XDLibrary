@@ -4,11 +4,11 @@ using System.IO;
 
 using Microsoft.Win32;
 
-using XDCore = Xlfdll.Core;
+using XDConfig = Xlfdll.Configuration;
 
 namespace Xlfdll.Windows.Configuration
 {
-    public class RegistryConfigurationProcessor : XDCore.IConfigurationProcessor
+    public class RegistryConfigurationProcessor : XDConfig.IConfigurationProcessor
     {
         public RegistryConfigurationProcessor(String root, RegistryConfigurationScope scope)
         {
@@ -19,9 +19,9 @@ namespace Xlfdll.Windows.Configuration
         public String RootPath { get; }
         public RegistryConfigurationScope Scope { get; }
 
-        public XDCore.Configuration LoadConfiguration()
+        public XDConfig.Configuration LoadConfiguration()
         {
-            XDCore.Configuration configuration = new XDCore.Configuration();
+            XDConfig.Configuration configuration = new XDConfig.Configuration();
 
             if (this.CheckConfiguration())
             {
@@ -47,7 +47,7 @@ namespace Xlfdll.Windows.Configuration
             return configuration;
         }
 
-        public void SaveConfiguration(XDCore.Configuration configuration)
+        public void SaveConfiguration(XDConfig.Configuration configuration)
         {
             if (configuration == null)
             {
@@ -67,7 +67,7 @@ namespace Xlfdll.Windows.Configuration
 
             configRegistryKey = RegistryConfigurationProcessor.GetRegistryKey(this.RootPath, this.Scope);
 
-            foreach (XDCore.ConfigurationSection section in configuration.Sections)
+            foreach (XDConfig.ConfigurationSection section in configuration.Sections)
             {
                 RegistryKey sectionRegistryKey = RegistryConfigurationProcessor.GetRegistryKey(Path.Combine(this.RootPath, section.Name), this.Scope);
 

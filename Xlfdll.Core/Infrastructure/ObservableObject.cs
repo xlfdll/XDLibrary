@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-namespace Xlfdll.Core
+namespace Xlfdll
 {
     public abstract class ObservableObject : INotifyPropertyChanged
     {

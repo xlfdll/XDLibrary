@@ -4,9 +4,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-using Xlfdll.Core.Collections;
+using Xlfdll.Collections;
 
-namespace Xlfdll.Core.Network
+namespace Xlfdll.Network
 {
 	public static class WebOperations
 	{

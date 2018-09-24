@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Xlfdll.Core
+namespace Xlfdll.Text
 {
 	public static class AdditionalEncodings
 	{

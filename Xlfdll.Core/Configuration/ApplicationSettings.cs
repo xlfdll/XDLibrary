@@ -1,4 +1,4 @@
-﻿namespace Xlfdll.Core
+﻿namespace Xlfdll.Configuration
 {
     public abstract class ApplicationSettings
     {

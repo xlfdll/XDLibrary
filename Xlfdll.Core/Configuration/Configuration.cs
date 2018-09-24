@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Xlfdll.Core
+namespace Xlfdll.Configuration
 {
 	public class Configuration : IEnumerable<KeyValuePair<String, ConfigurationSection>>
 	{

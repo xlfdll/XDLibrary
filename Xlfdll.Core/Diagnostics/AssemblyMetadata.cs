@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace Xlfdll.Core.Diagnostics
+namespace Xlfdll.Diagnostics
 {
 	public class AssemblyMetadata
 	{

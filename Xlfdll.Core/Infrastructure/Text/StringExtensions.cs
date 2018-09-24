@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Xlfdll.Core
+namespace Xlfdll
 {
     public static class StringExtensions
     {

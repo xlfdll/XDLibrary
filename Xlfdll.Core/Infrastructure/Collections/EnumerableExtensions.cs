@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Xlfdll.Core.Collections
+namespace Xlfdll.Collections
 {
 	public static class EnumerableExtensions
 	{

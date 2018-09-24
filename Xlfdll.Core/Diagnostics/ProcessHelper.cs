@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Xlfdll.Core.Diagnostics
+namespace Xlfdll.Diagnostics
 {
 	public static class ProcessHelper
 	{

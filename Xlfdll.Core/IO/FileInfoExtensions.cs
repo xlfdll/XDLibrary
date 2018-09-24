@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Xlfdll.Core.IO
+namespace Xlfdll.IO
 {
     public static class FileInfoExtensions
     {

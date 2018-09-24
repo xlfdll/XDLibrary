@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Xlfdll.Core
+namespace Xlfdll.Configuration
 {
     public class ApplicationConfiguration
     {

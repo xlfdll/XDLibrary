@@ -7,7 +7,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-using Xlfdll.Core.Collections;
+using Xlfdll.Collections;
 
 namespace Xlfdll.Windows.Presentation
 {
