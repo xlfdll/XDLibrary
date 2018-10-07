@@ -1,4 +1,4 @@
-# XDWS Libraries
+# XDWS Libraries - .NET
 This repository contains common code files used by other XDWS projects in .NET platforms. It contains the following components:
 
 * **Xlfdll.Core**: Contains data structures and methods to extend basic data types and I/O operations in .NET platforms, provided as the abstracted base of other XDWS components and projects
