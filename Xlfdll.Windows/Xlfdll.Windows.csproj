@@ -36,6 +36,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\BuildInfo.cs">
+      <Link>BuildInfo.cs</Link>
+    </Compile>
     <Compile Include="API\PowerManagement.cs" />
     <Compile Include="API\WindowClass.cs" />
     <Compile Include="API\WindowStyles.cs" />

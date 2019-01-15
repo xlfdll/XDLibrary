@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\BuildInfo.cs">
+      <Link>BuildInfo.cs</Link>
+    </Compile>
     <Compile Include="MySQLDirectDataOperator.cs" />
     <Compile Include="MySQLQueuedDataOperator.cs" />
     <Compile Include="MySQLSystemConstants.cs" />
