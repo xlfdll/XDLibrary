@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Data;
+using System.Data.Common;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Xlfdll.Data.SQLite
 {
-    public class SQLiteQueuedDataOperator : IDisposable
+    public class SQLiteQueuedDataOperator : IQueuedDataOperator
     {
         public SQLiteQueuedDataOperator(String databaseFileName) : this(databaseFileName, String.Empty) { }
 
@@ -294,6 +296,70 @@ namespace Xlfdll.Data.SQLite
 
             this.Connection.Dispose();
             this.TaskCancellationTokenSource.Dispose();
+        }
+
+        #endregion
+
+        #region IQueuedDataOperator Members
+
+        DbConnection IQueuedDataOperator.Connection
+        {
+            get { return this.Connection; }
+        }
+
+        Boolean IQueuedDataOperator.IsDatabaseConnected
+        {
+            get { return this.IsDatabaseConnected; }
+        }
+
+        Boolean IQueuedDataOperator.IsTaskRunning
+        {
+            get { return this.IsTaskRunning; }
+        }
+
+        void IQueuedDataOperator.StartQueueProcessing()
+        {
+            this.StartQueueProcessing();
+        }
+
+        void IQueuedDataOperator.StopQueueProcessing()
+        {
+            this.StopQueueProcessing();
+        }
+
+        Int64 IQueuedDataOperator.EnqueueCommand(String commandText)
+        {
+            return this.EnqueueCommand(commandText);
+        }
+
+        Int64 IQueuedDataOperator.EnqueueCommand(String commandText, params DbParameter[] commandParameters)
+        {
+            return this.EnqueueCommand(commandText, commandParameters.OfType<SQLiteParameter>().ToArray());
+        }
+
+        Int64 IQueuedDataOperator.EnqueueCommand(String commandText, Int32 commandTimeout, params DbParameter[] commandParameters)
+        {
+            return this.EnqueueCommand(commandText, commandTimeout, commandParameters.OfType<SQLiteParameter>().ToArray());
+        }
+
+        Int64 IQueuedDataOperator.EnqueueCommand(DbCommand command)
+        {
+            return this.EnqueueCommand(command as SQLiteCommand);
+        }
+
+        Int64 IQueuedDataOperator.EnqueueCommand(DbCommand command, Int32 commandTimeout)
+        {
+            return this.EnqueueCommand(command as SQLiteCommand, commandTimeout);
+        }
+
+        Boolean IQueuedDataOperator.IsCommandProcessed(Int64 id)
+        {
+            return this.IsCommandProcessed(id);
+        }
+
+        Object IQueuedDataOperator.GetCommandResult(Int64 id)
+        {
+            return this.GetCommandResult(id);
         }
 
         #endregion
