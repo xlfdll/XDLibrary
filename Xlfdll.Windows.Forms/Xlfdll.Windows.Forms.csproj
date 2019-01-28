@@ -44,9 +44,15 @@
       <Link>BuildInfo.cs</Link>
     </Compile>
     <Compile Include="Dialogs\ExceptionMessageBox.cs" />
+    <Compile Include="Localization\FormLanguagePackBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Xlfdll.Core\Xlfdll.Core.csproj">
+      <Project>{B82EB204-2388-4BCF-B138-EF627FD1F775}</Project>
+      <Name>Xlfdll.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
