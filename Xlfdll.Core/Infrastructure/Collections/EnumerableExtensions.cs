@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Xlfdll.Collections
 {
@@ -23,9 +24,25 @@ namespace Xlfdll.Collections
 			}
 		}
 
-		#region ObservableCollection<T>
+        #region Math Operations
 
-		public static void AddRange<T>(this ObservableCollection<T> target, IEnumerable<T> source)
+        public static Double StDev<T>(this IEnumerable<T> points, Func<T, Double> selector)
+        {
+            return (from p in points select selector(p)).StDev();
+        }
+
+        public static Double StDev(this IEnumerable<Double> values)
+        {
+            Double mean = values.Average();
+
+            return Math.Sqrt(values.Sum(v => (v - mean) * (v - mean)) / values.Count());
+        }
+
+        #endregion
+
+        #region ObservableCollection<T>
+
+        public static void AddRange<T>(this ObservableCollection<T> target, IEnumerable<T> source)
 		{
 			foreach (T item in source)
 			{
