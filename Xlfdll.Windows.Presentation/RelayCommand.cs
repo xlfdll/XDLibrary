@@ -5,9 +5,7 @@ namespace Xlfdll.Windows.Presentation
 {
     public class RelayCommand<T> : ICommand
     {
-        public RelayCommand(Action<T> execute) : this(execute, null) { }
-
-        public RelayCommand(Action<T> execute, Predicate<T> canExecute)
+        public RelayCommand(Action<T> execute, Predicate<T> canExecute = null)
         {
             if (execute == null)
             {
