@@ -55,6 +55,7 @@
     <Compile Include="Functions\ControlExtensions.cs" />
     <Compile Include="Functions\SystemFunctions.cs" />
     <Compile Include="Functions\WindowExtensions.cs" />
+    <Compile Include="Helpers\DependencyPropertyHelper.cs" />
     <Compile Include="Localization\LocalizationValueConverter.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
