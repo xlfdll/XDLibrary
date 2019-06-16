@@ -64,6 +64,7 @@
     <Compile Include="Logging\LoggingExtensions.cs" />
     <Compile Include="Logging\QueuedLogger.cs" />
     <Compile Include="Network\NetworkStatus.cs" />
+    <Compile Include="Network\TelnetClient.cs" />
     <Compile Include="Network\WebOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
