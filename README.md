@@ -5,6 +5,7 @@ This repository contains common code files used by other XDWS projects in .NET p
 * **Xlfdll.Data.Access**: Contains data operator and system constant classes for accessing Microsoft Access databases
 * **Xlfdll.Data.MySQL**: Contains data operator and system constant classes for accessing MySQL databases. Requires MySQL Connector/NET 8.0+ to work (lower versions can also be used by minor modifications)
 * **Xlfdll.Data.SQLite**: Contains data operator and system constant classes for accessing SQLite databases. Requires the official System.Data.SQLite ADO.NET provider
+* **Xlfdll.Network.SecureShell**: Contains classes for Secure Shell (SSH) operations. Requires Renci's SSH.NET library
 * **Xlfdll.Windows**: Contains methods and data structures for encapsulating OS facilities specific to Windows
 * **Xlfdll.Windows.Forms**: Contains extensions and additional dialogs for use in .NET Windows Forms UI framework
 * **Xlfdll.Windows.Presentation**: Contains extensions and additional dialogs, converters, and styles in resource dictionaries for use in Windows Presentation Foundation (WPF) UI framework
