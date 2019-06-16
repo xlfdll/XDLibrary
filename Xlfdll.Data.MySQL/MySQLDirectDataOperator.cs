@@ -20,7 +20,7 @@ namespace Xlfdll.Data.MySQL
             };
 
             this.Connection = new MySqlConnection(connectionStringBuilder.ToString());
-            this.GeneratedDataReaders = new List<MySqlDataReader>();
+            this.GeneratedCommands = new List<MySqlCommand>();
         }
 
         public MySqlConnection Connection { get; }
@@ -38,6 +38,35 @@ namespace Xlfdll.Data.MySQL
         public void RollbackTransaction()
         {
             this.ExecuteNonQuery("ROLLBACK;");
+        }
+
+        public MySqlCommand GetCommand(String commandText)
+        {
+            return this.GetCommand(commandText, MySQLSystemConstants.DefaultCommandTimeout, null);
+        }
+
+        public MySqlCommand GetCommand(String commandText, params MySqlParameter[] commandParameters)
+        {
+            return this.GetCommand(commandText, MySQLSystemConstants.DefaultCommandTimeout, commandParameters);
+        }
+
+        public MySqlCommand GetCommand(String commandText, Int32 commandTimeout, params MySqlParameter[] commandParameters)
+        {
+            if (this.Connection.State != ConnectionState.Open)
+            {
+                this.Connection.Open();
+            }
+
+            MySqlCommand command = new MySqlCommand(commandText, this.Connection) { CommandTimeout = commandTimeout };
+
+            if (commandParameters != null)
+            {
+                command.Parameters.AddRange(commandParameters);
+            }
+
+            this.GeneratedCommands.Add(command);
+
+            return command;
         }
 
         public Int32 ExecuteNonQuery(String commandText)
@@ -108,40 +137,6 @@ namespace Xlfdll.Data.MySQL
             return result;
         }
 
-        public MySqlDataReader ExecuteReader(String commandText)
-        {
-            return this.ExecuteReader(commandText, MySQLSystemConstants.DefaultCommandTimeout, null);
-        }
-
-        public MySqlDataReader ExecuteReader(String commandText, params MySqlParameter[] commandParameters)
-        {
-            return this.ExecuteReader(commandText, MySQLSystemConstants.DefaultCommandTimeout, commandParameters);
-        }
-
-        public MySqlDataReader ExecuteReader(String commandText, Int32 commandTimeout, params MySqlParameter[] commandParameters)
-        {
-            MySqlDataReader dataReader = null;
-
-            if (this.Connection.State != ConnectionState.Open)
-            {
-                this.Connection.Open();
-            }
-
-            using (MySqlCommand command = new MySqlCommand(commandText, this.Connection) { CommandTimeout = commandTimeout })
-            {
-                if (commandParameters != null)
-                {
-                    command.Parameters.AddRange(commandParameters);
-                }
-
-                dataReader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-                this.GeneratedDataReaders.Add(dataReader);
-            }
-
-            return dataReader;
-        }
-
         public DataTable ExecuteDataTable(String commandText)
         {
             return this.ExecuteDataTable(commandText, MySQLSystemConstants.DefaultCommandTimeout, null);
@@ -200,7 +195,7 @@ namespace Xlfdll.Data.MySQL
             return dataSet;
         }
 
-        private List<MySqlDataReader> GeneratedDataReaders { get; }
+        private List<MySqlCommand> GeneratedCommands { get; }
 
         #region IDirectDataOperator Members
 
@@ -221,6 +216,21 @@ namespace Xlfdll.Data.MySQL
             this.RollbackTransaction();
         }
 
+        DbCommand IDirectDataOperator.GetCommand(String commandText)
+        {
+            return this.GetCommand(commandText);
+        }
+
+        DbCommand IDirectDataOperator.GetCommand(String commandText, params DbParameter[] commandParameters)
+        {
+            return this.GetCommand(commandText, commandParameters as MySqlParameter[]);
+        }
+
+        DbCommand IDirectDataOperator.GetCommand(String commandText, Int32 commandTimeout, params DbParameter[] commandParameters)
+        {
+            return this.GetCommand(commandText, commandTimeout, commandParameters as MySqlParameter[]);
+        }
+
         Int32 IDirectDataOperator.ExecuteNonQuery(String commandText, params DbParameter[] commandParameters)
         {
             return this.ExecuteNonQuery(commandText, commandParameters as MySqlParameter[]);
@@ -239,21 +249,6 @@ namespace Xlfdll.Data.MySQL
         Object IDirectDataOperator.ExecuteScalar(String commandText, Int32 commandTimeout, params DbParameter[] commandParameters)
         {
             return this.ExecuteScalar(commandText, commandTimeout, commandParameters as MySqlParameter[]);
-        }
-
-        DbDataReader IDirectDataOperator.ExecuteReader(String commandText)
-        {
-            return this.ExecuteReader(commandText);
-        }
-
-        DbDataReader IDirectDataOperator.ExecuteReader(String commandText, params DbParameter[] commandParameters)
-        {
-            return this.ExecuteReader(commandText, commandParameters as MySqlParameter[]);
-        }
-
-        DbDataReader IDirectDataOperator.ExecuteReader(String commandText, Int32 commandTimeout, params DbParameter[] commandParameters)
-        {
-            return this.ExecuteReader(commandText, commandTimeout, commandParameters as MySqlParameter[]);
         }
 
         DataTable IDirectDataOperator.ExecuteDataTable(String commandText, params DbParameter[] commandParameters)
@@ -282,9 +277,9 @@ namespace Xlfdll.Data.MySQL
 
         public void Dispose()
         {
-            foreach (MySqlDataReader dataReader in this.GeneratedDataReaders)
+            foreach (MySqlCommand command in this.GeneratedCommands)
             {
-                dataReader.Dispose();
+                command.Dispose();
             }
 
             this.Connection.Dispose();

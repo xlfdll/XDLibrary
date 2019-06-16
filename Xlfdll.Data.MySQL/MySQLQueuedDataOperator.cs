@@ -37,7 +37,6 @@ namespace Xlfdll.Data.MySQL
 
         public void StartQueueProcessing()
         {
-            this.Connection.Open();
             this.SQLCommandTask.Start();
         }
 
@@ -285,21 +284,6 @@ namespace Xlfdll.Data.MySQL
 
         private const Int32 QueueProcessingPollingTime = 3;
 
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            if (this.IsTaskRunning)
-            {
-                this.StopQueueProcessing();
-            }
-
-            this.Connection.Dispose();
-            this.TaskCancellationTokenSource.Dispose();
-        }
-
-        #endregion
-
         #region IQueuedDataOperator Members
 
         DbConnection IQueuedDataOperator.Connection
@@ -360,6 +344,21 @@ namespace Xlfdll.Data.MySQL
         Object IQueuedDataOperator.GetCommandResult(Int64 id)
         {
             return this.GetCommandResult(id);
+        }
+
+        #endregion
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            if (this.IsTaskRunning)
+            {
+                this.StopQueueProcessing();
+            }
+
+            this.Connection.Dispose();
+            this.TaskCancellationTokenSource.Dispose();
         }
 
         #endregion

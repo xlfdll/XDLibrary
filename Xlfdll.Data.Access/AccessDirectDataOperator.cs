@@ -16,7 +16,7 @@ namespace Xlfdll.Data.Access
             };
 
             this.Connection = new OleDbConnection(connectionStringBuilder.ToString());
-            this.GeneratedDataReaders = new List<OleDbDataReader>();
+            this.GeneratedCommands = new List<OleDbCommand>();
         }
 
         public OleDbConnection Connection { get; }
@@ -34,6 +34,35 @@ namespace Xlfdll.Data.Access
         public void RollbackTransaction()
         {
             this.ExecuteNonQuery("ROLLBACK;");
+        }
+
+        public OleDbCommand GetCommand(String commandText)
+        {
+            return this.GetCommand(commandText, AccessSystemConstants.DefaultCommandTimeout, null);
+        }
+
+        public OleDbCommand GetCommand(String commandText, params OleDbParameter[] commandParameters)
+        {
+            return this.GetCommand(commandText, AccessSystemConstants.DefaultCommandTimeout, commandParameters);
+        }
+
+        public OleDbCommand GetCommand(String commandText, Int32 commandTimeout, params OleDbParameter[] commandParameters)
+        {
+            if (this.Connection.State != ConnectionState.Open)
+            {
+                this.Connection.Open();
+            }
+
+            OleDbCommand command = new OleDbCommand(commandText, this.Connection) { CommandTimeout = commandTimeout };
+
+            if (commandParameters != null)
+            {
+                command.Parameters.AddRange(commandParameters);
+            }
+
+            this.GeneratedCommands.Add(command);
+
+            return command;
         }
 
         public Int32 ExecuteNonQuery(String commandText)
@@ -104,40 +133,6 @@ namespace Xlfdll.Data.Access
             return result;
         }
 
-        public OleDbDataReader ExecuteReader(String commandText)
-        {
-            return this.ExecuteReader(commandText, null);
-        }
-
-        public OleDbDataReader ExecuteReader(String commandText, params OleDbParameter[] commandParameters)
-        {
-            return this.ExecuteReader(commandText, AccessSystemConstants.DefaultCommandTimeout, commandParameters);
-        }
-
-        public OleDbDataReader ExecuteReader(String commandText, Int32 commandTimeout, params OleDbParameter[] commandParameters)
-        {
-            OleDbDataReader dataReader = null;
-
-            if (this.Connection.State != ConnectionState.Open)
-            {
-                this.Connection.Open();
-            }
-
-            using (OleDbCommand command = new OleDbCommand(commandText, this.Connection) { CommandTimeout = commandTimeout })
-            {
-                if (commandParameters != null)
-                {
-                    command.Parameters.AddRange(commandParameters);
-                }
-
-                dataReader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-                this.GeneratedDataReaders.Add(dataReader);
-            }
-
-            return dataReader;
-        }
-
         public DataTable ExecuteDataTable(String commandText)
         {
             return this.ExecuteDataTable(commandText, null);
@@ -196,7 +191,7 @@ namespace Xlfdll.Data.Access
             return result;
         }
 
-        private List<OleDbDataReader> GeneratedDataReaders { get; }
+        private List<OleDbCommand> GeneratedCommands { get; }
 
         #region IDirectDataOperator Members
 
@@ -217,6 +212,21 @@ namespace Xlfdll.Data.Access
             this.RollbackTransaction();
         }
 
+        DbCommand IDirectDataOperator.GetCommand(String commandText)
+        {
+            return this.GetCommand(commandText);
+        }
+
+        DbCommand IDirectDataOperator.GetCommand(String commandText, params DbParameter[] commandParameters)
+        {
+            return this.GetCommand(commandText, commandParameters as OleDbParameter[]);
+        }
+
+        DbCommand IDirectDataOperator.GetCommand(String commandText, Int32 commandTimeout, params DbParameter[] commandParameters)
+        {
+            return this.GetCommand(commandText, commandTimeout, commandParameters as OleDbParameter[]);
+        }
+
         Int32 IDirectDataOperator.ExecuteNonQuery(String commandText, params DbParameter[] commandParameters)
         {
             return this.ExecuteNonQuery(commandText, commandParameters as OleDbParameter[]);
@@ -235,21 +245,6 @@ namespace Xlfdll.Data.Access
         Object IDirectDataOperator.ExecuteScalar(String commandText, Int32 commandTimeout, params DbParameter[] commandParameters)
         {
             return this.ExecuteScalar(commandText, commandTimeout, commandParameters as OleDbParameter[]);
-        }
-
-        DbDataReader IDirectDataOperator.ExecuteReader(String commandText)
-        {
-            return this.ExecuteReader(commandText);
-        }
-
-        DbDataReader IDirectDataOperator.ExecuteReader(String commandText, params DbParameter[] commandParameters)
-        {
-            return this.ExecuteReader(commandText, commandParameters as OleDbParameter[]);
-        }
-
-        DbDataReader IDirectDataOperator.ExecuteReader(String commandText, Int32 commandTimeout, params DbParameter[] commandParameters)
-        {
-            return this.ExecuteReader(commandText, commandTimeout, commandParameters as OleDbParameter[]);
         }
 
         DataTable IDirectDataOperator.ExecuteDataTable(String commandText, params DbParameter[] commandParameters)
@@ -278,9 +273,9 @@ namespace Xlfdll.Data.Access
 
         public void Dispose()
         {
-            foreach (OleDbDataReader dataReader in this.GeneratedDataReaders)
+            foreach (OleDbCommand command in this.GeneratedCommands)
             {
-                dataReader.Dispose();
+                command.Dispose();
             }
 
             this.Connection.Dispose();

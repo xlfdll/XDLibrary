@@ -20,7 +20,7 @@ namespace Xlfdll.Data.SQLite
             };
 
             this.Connection = new SQLiteConnection(connectionStringBuilder.ToString());
-            this.GeneratedDataReaders = new List<SQLiteDataReader>();
+            this.GeneratedCommands = new List<SQLiteCommand>();
         }
 
         public SQLiteConnection Connection { get; }
@@ -38,6 +38,35 @@ namespace Xlfdll.Data.SQLite
         public void RollbackTransaction()
         {
             this.ExecuteNonQuery("ROLLBACK TRANSACTION;");
+        }
+
+        public SQLiteCommand GetCommand(String commandText)
+        {
+            return this.GetCommand(commandText, null);
+        }
+
+        public SQLiteCommand GetCommand(String commandText, params SQLiteParameter[] commandParameters)
+        {
+            return this.GetCommand(commandText, SQLiteSystemConstants.DefaultCommandTimeout, commandParameters);
+        }
+
+        public SQLiteCommand GetCommand(String commandText, Int32 commandTimeout, params SQLiteParameter[] commandParameters)
+        {
+            if (this.Connection.State != ConnectionState.Open)
+            {
+                this.Connection.Open();
+            }
+
+            SQLiteCommand command = new SQLiteCommand(commandText, this.Connection) { CommandTimeout = commandTimeout };
+
+            if (commandParameters != null)
+            {
+                command.Parameters.AddRange(commandParameters);
+            }
+
+            this.GeneratedCommands.Add(command);
+
+            return command;
         }
 
         public Int32 ExecuteNonQuery(String commandText)
@@ -108,40 +137,6 @@ namespace Xlfdll.Data.SQLite
             return result;
         }
 
-        public SQLiteDataReader ExecuteReader(String commandText)
-        {
-            return this.ExecuteReader(commandText, null);
-        }
-
-        public SQLiteDataReader ExecuteReader(String commandText, params SQLiteParameter[] commandParameters)
-        {
-            return this.ExecuteReader(commandText, SQLiteSystemConstants.DefaultCommandTimeout, commandParameters);
-        }
-
-        public SQLiteDataReader ExecuteReader(String commandText, Int32 commandTimeout, params SQLiteParameter[] commandParameters)
-        {
-            SQLiteDataReader dataReader = null;
-
-            if (this.Connection.State != ConnectionState.Open)
-            {
-                this.Connection.Open();
-            }
-
-            using (SQLiteCommand command = new SQLiteCommand(commandText, this.Connection) { CommandTimeout = commandTimeout })
-            {
-                if (commandParameters != null)
-                {
-                    command.Parameters.AddRange(commandParameters);
-                }
-
-                dataReader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-                this.GeneratedDataReaders.Add(dataReader);
-            }
-
-            return dataReader;
-        }
-
         public DataTable ExecuteDataTable(String commandText)
         {
             return this.ExecuteDataTable(commandText, null);
@@ -200,7 +195,7 @@ namespace Xlfdll.Data.SQLite
             return result;
         }
 
-        private List<SQLiteDataReader> GeneratedDataReaders { get; }
+        private List<SQLiteCommand> GeneratedCommands { get; }
 
         #region IDirectDataOperator Members
 
@@ -221,6 +216,21 @@ namespace Xlfdll.Data.SQLite
             this.RollbackTransaction();
         }
 
+        DbCommand IDirectDataOperator.GetCommand(String commandText)
+        {
+            return this.GetCommand(commandText);
+        }
+
+        DbCommand IDirectDataOperator.GetCommand(String commandText, params DbParameter[] commandParameters)
+        {
+            return this.GetCommand(commandText, commandParameters as SQLiteParameter[]);
+        }
+
+        DbCommand IDirectDataOperator.GetCommand(String commandText, Int32 commandTimeout, params DbParameter[] commandParameters)
+        {
+            return this.GetCommand(commandText, commandTimeout, commandParameters as SQLiteParameter[]);
+        }
+
         Int32 IDirectDataOperator.ExecuteNonQuery(String commandText, params DbParameter[] commandParameters)
         {
             return this.ExecuteNonQuery(commandText, commandParameters as SQLiteParameter[]);
@@ -239,21 +249,6 @@ namespace Xlfdll.Data.SQLite
         Object IDirectDataOperator.ExecuteScalar(String commandText, Int32 commandTimeout, params DbParameter[] commandParameters)
         {
             return this.ExecuteScalar(commandText, commandTimeout, commandParameters as SQLiteParameter[]);
-        }
-
-        DbDataReader IDirectDataOperator.ExecuteReader(String commandText)
-        {
-            return this.ExecuteReader(commandText);
-        }
-
-        DbDataReader IDirectDataOperator.ExecuteReader(String commandText, params DbParameter[] commandParameters)
-        {
-            return this.ExecuteReader(commandText, commandParameters as SQLiteParameter[]);
-        }
-
-        DbDataReader IDirectDataOperator.ExecuteReader(String commandText, Int32 commandTimeout, params DbParameter[] commandParameters)
-        {
-            return this.ExecuteReader(commandText, commandTimeout, commandParameters as SQLiteParameter[]);
         }
 
         DataTable IDirectDataOperator.ExecuteDataTable(String commandText, params DbParameter[] commandParameters)
@@ -282,9 +277,9 @@ namespace Xlfdll.Data.SQLite
 
         public void Dispose()
         {
-            foreach (SQLiteDataReader dataReader in this.GeneratedDataReaders)
+            foreach (SQLiteCommand command in this.GeneratedCommands)
             {
-                dataReader.Dispose();
+                command.Dispose();
             }
 
             this.Connection.Dispose();
