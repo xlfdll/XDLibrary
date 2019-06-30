@@ -8,9 +8,9 @@ using Xamarin.Forms.Xaml;
 namespace Xlfdll.Xamarin.Forms.Localization
 {
     [ContentProperty("Key")]
-    public class ResourceLocalizationExtension : IMarkupExtension
+    public class ResourceLocalizerExtension : IMarkupExtension
     {
-        public ResourceLocalizationExtension()
+        public ResourceLocalizerExtension()
         {
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
@@ -29,14 +29,14 @@ namespace Xlfdll.Xamarin.Forms.Localization
                 return String.Empty;
             }
 
-            String translatedText = ResourceLocalizationExtension.ResourceManager.Value.GetString(this.Key, culture);
+            String translatedText = ResourceLocalizerExtension.ResourceManager.Value.GetString(this.Key, culture);
 
             if (String.IsNullOrEmpty(translatedText))
             {
 #if DEBUG
                 throw new ArgumentException(
                     String.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.",
-                        this.Key, ResourceLocalizationExtension.ResourceID, culture.Name),
+                        this.Key, ResourceLocalizerExtension.ResourceID, culture.Name),
                     "Text");
 #else
                 // HACK: returns the key, which GETS DISPLAYED TO THE USER
@@ -49,7 +49,7 @@ namespace Xlfdll.Xamarin.Forms.Localization
         public static String ResourceID { get; set; }
 
         private static readonly Lazy<ResourceManager> ResourceManager = new Lazy<ResourceManager>(
-            () => new ResourceManager(ResourceLocalizationExtension.ResourceID,
-                IntrospectionExtensions.GetTypeInfo(typeof(ResourceLocalizationExtension)).Assembly));
+            () => new ResourceManager(ResourceLocalizerExtension.ResourceID,
+                IntrospectionExtensions.GetTypeInfo(typeof(ResourceLocalizerExtension)).Assembly));
     }
 }
