@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Xlfdll Workstation</Authors>
+    <Product>Xlfdll .NET Library</Product>
+    <Description>Xlfdll .NET Windows Presentation Foundation Library</Description>
+    <Copyright>© 2019 Xlfdll Workstation</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.540366" />
+  </ItemGroup>
+
+</Project>
