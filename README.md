@@ -9,6 +9,9 @@ This repository contains common code files used by other XDWS projects in .NET p
 * **Xlfdll.Windows**: Contains methods and data structures for encapsulating OS facilities specific to Windows
 * **Xlfdll.Windows.Forms**: Contains extensions and additional dialogs for use in .NET Windows Forms UI framework
 * **Xlfdll.Windows.Presentation**: Contains extensions and additional dialogs, converters, and styles in resource dictionaries for use in Windows Presentation Foundation (WPF) UI framework
+* **Xlfdll.Xamarin.Forms**: Contains support extensions and helpers for use in Xamarin.Forms framework
+* **Xlfdll.Xamarin.Android**: Contains specific support components (localization, etc.) for use in Xamarin.iOS platform
+* **Xlfdll.Xamarin.iOS**: Contains specific support components (localization, etc.) for use in Xamarin.Android platform
 * **Xlfdll.Web**: Contains extensions and additional resources for Web development
 
 ## Development Prerequisites
