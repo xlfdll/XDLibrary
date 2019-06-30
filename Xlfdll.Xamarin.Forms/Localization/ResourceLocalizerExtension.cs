@@ -36,8 +36,7 @@ namespace Xlfdll.Xamarin.Forms.Localization
 #if DEBUG
                 throw new ArgumentException(
                     String.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.",
-                        this.Key, ResourceLocalizerExtension.ResourceID, culture.Name),
-                    "Text");
+                        this.Key, ResourceLocalizerExtension.ResourceID, culture.Name));
 #else
                 // HACK: returns the key, which GETS DISPLAYED TO THE USER
                 translatedText = $"[{this.Key}]";
