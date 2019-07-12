@@ -14,13 +14,17 @@ namespace Xlfdll.Data.MySQL
     public class MySQLQueuedDataOperator : IQueuedDataOperator
     {
         public MySQLQueuedDataOperator(String server, String userName, String password, String database)
+            : this(server, userName, password, database, MySQLSystemConstants.DefaultConnectionTimeout) { }
+
+        public MySQLQueuedDataOperator(String server, String userName, String password, String database, UInt32 connectionTimeout)
         {
             MySqlConnectionStringBuilder connectionStringBuilder = new MySqlConnectionStringBuilder()
             {
                 Server = server,
                 Database = database,
                 UserID = userName,
-                Password = password
+                Password = password,
+                ConnectionTimeout = connectionTimeout
             };
 
             this.Connection = new MySqlConnection(connectionStringBuilder.ToString());
