@@ -12,15 +12,25 @@ namespace Xlfdll.Network.SecureShell
     public class SSHFileWatcher : IDisposable
     {
         public SSHFileWatcher(String host, String userName, String password, String path)
+            : this(host, userName, password, path, SSHConstants.DefaultConnectionTimeout, SSHConstants.DefaultOperationTimeout) { }
+
+        public SSHFileWatcher(String host, String userName, String password, String path,
+            Int32 connectionTimeout, Int32 operationTimeout)
         {
             this.Host = host;
             this.UserName = userName;
             this.Path = path;
 
-            // The default SftpClient.OperationTimeout is Infinite
-            this.Client = new SftpClient(host, userName, password)
+            ConnectionInfo connectionInfo = new ConnectionInfo(host, userName,
+                new PasswordAuthenticationMethod(userName, password))
             {
-                OperationTimeout = new TimeSpan(0, 0, 5)
+                Timeout = TimeSpan.FromSeconds(connectionTimeout)
+            };
+
+            // The default SftpClient.OperationTimeout is Infinite
+            this.Client = new SftpClient(connectionInfo)
+            {
+                OperationTimeout = TimeSpan.FromSeconds(operationTimeout)
             };
             this.Client.HostKeyReceived += (sender, e) => { e.CanTrust = true; };
 
