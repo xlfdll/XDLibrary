@@ -1,8 +1,6 @@
 ﻿using System;
 
-using Xlfdll.Localization;
-
-namespace Xlfdll.Core.Localization
+namespace Xlfdll.Localization
 {
     public static class LocalizationExtensions
     {
