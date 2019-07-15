@@ -60,6 +60,7 @@
     <Compile Include="IO\FileInfoExtensions.cs" />
     <Compile Include="Localization\ILanguagePackProcessor.cs" />
     <Compile Include="Localization\LanguageDictionary.cs" />
+    <Compile Include="Localization\LocalizationExtensions.cs" />
     <Compile Include="Localization\TextLanguagePackProcessor.cs" />
     <Compile Include="Logging\LoggingExtensions.cs" />
     <Compile Include="Logging\QueuedLogger.cs" />
