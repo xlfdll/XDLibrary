@@ -50,16 +50,19 @@ namespace Xlfdll.Windows.Presentation
 
                     Double columnWidth = (totalWidth - skippedGridViewColumns.Sum(c => c.ActualWidth) - 32) / (gridView.Columns.Count - skippedGridViewColumns.Count);
 
-                    gridView.Columns.AsParallel().ForEach
-                    (
-                        (column) =>
-                        {
-                            if (skippedGridViewColumns == null || !skippedGridViewColumns.Contains(column))
+                    if (columnWidth > 0)
+                    {
+                        gridView.Columns.AsParallel().ForEach
+                        (
+                            (column) =>
                             {
-                                column.Width = columnWidth;
+                                if (skippedGridViewColumns == null || !skippedGridViewColumns.Contains(column))
+                                {
+                                    column.Width = columnWidth;
+                                }
                             }
-                        }
-                    );
+                        );
+                    }
                 }),
                 DispatcherPriority.Loaded // Execute after the DependencyObject is measured and rendered
             );
