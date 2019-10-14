@@ -8,84 +8,85 @@ using Xlfdll.Collections;
 
 namespace Xlfdll.Network
 {
-	public static class WebOperations
-	{
-		public static String GetContentAsString(String url)
-		{
-			return WebOperations.GetContentAsString(url, Encoding.UTF8, null);
-		}
+    public static class WebOperations
+    {
+        public static String GetContentAsString(String url)
+        {
+            return WebOperations.GetContentAsString(url, Encoding.UTF8, null);
+        }
 
-		public static String GetContentAsString(String url, Encoding encoding)
-		{
-			return WebOperations.GetContentAsString(url, encoding, null);
-		}
+        public static String GetContentAsString(String url, Encoding encoding)
+        {
+            return WebOperations.GetContentAsString(url, encoding, null);
+        }
 
-		public static String GetContentAsString(String url, Encoding encoding, IEnumerable<KeyValuePair<String, String>> query)
-		{
-			Uri uri = WebOperations.GenerateUri(url, query);
+        public static String GetContentAsString(String url, Encoding encoding, IEnumerable<KeyValuePair<String, String>> query)
+        {
+            Uri uri = WebOperations.GenerateUri(url, query);
 
-			String result = String.Empty;
+            String result = String.Empty;
 
-			using (WebClient client = new WebClient() { Encoding = encoding })
-			{
-				result = client.DownloadString(uri);
-			}
+            using (WebClient client = new WebClient() { Encoding = encoding })
+            {
+                result = client.DownloadString(uri);
+            }
 
-			return result;
-		}
-		public static async Task<String> GetContentAsStringAsync(String url)
-		{
-			return await WebOperations.GetContentAsStringAsync(url, Encoding.UTF8, null);
-		}
+            return WebUtility.HtmlDecode(result);
+        }
 
-		public static async Task<String> GetContentAsStringAsync(String url, Encoding encoding)
-		{
-			return await WebOperations.GetContentAsStringAsync(url, encoding, null);
-		}
+        public static async Task<String> GetContentAsStringAsync(String url)
+        {
+            return await WebOperations.GetContentAsStringAsync(url, Encoding.UTF8, null);
+        }
 
-		public static async Task<String> GetContentAsStringAsync(String url, Encoding encoding, IEnumerable<KeyValuePair<String, String>> query)
-		{
-			Uri uri = WebOperations.GenerateUri(url, query);
+        public static async Task<String> GetContentAsStringAsync(String url, Encoding encoding)
+        {
+            return await WebOperations.GetContentAsStringAsync(url, encoding, null);
+        }
 
-			String result = String.Empty;
+        public static async Task<String> GetContentAsStringAsync(String url, Encoding encoding, IEnumerable<KeyValuePair<String, String>> query)
+        {
+            Uri uri = WebOperations.GenerateUri(url, query);
 
-			using (WebClient client = new WebClient() { Encoding = encoding })
-			{
-				result = await client.DownloadStringTaskAsync(uri);
-			}
+            String result = String.Empty;
 
-			return result;
-		}
+            using (WebClient client = new WebClient() { Encoding = encoding })
+            {
+                result = await client.DownloadStringTaskAsync(uri);
+            }
 
-		private static Uri GenerateUri(String url, IEnumerable<KeyValuePair<String, String>> query)
-		{
-			Uri uri = null;
+            return WebUtility.HtmlDecode(result);
+        }
 
-			if (query != null)
-			{
-				UriBuilder ub = new UriBuilder(url);
-				StringBuilder sb = new StringBuilder();
+        private static Uri GenerateUri(String url, IEnumerable<KeyValuePair<String, String>> query)
+        {
+            Uri uri = null;
 
-				query.ForEach
-				(
-					(pair) =>
-					{
-						sb.AppendFormat("{0}={1}&", pair.Key, pair.Value);
-					}
-				);
+            if (query != null)
+            {
+                UriBuilder ub = new UriBuilder(url);
+                StringBuilder sb = new StringBuilder();
 
-				sb.Remove(sb.Length - 1, 1);
+                query.ForEach
+                (
+                    (pair) =>
+                    {
+                        sb.AppendFormat("{0}={1}&", pair.Key, pair.Value);
+                    }
+                );
 
-				ub.Query = Uri.EscapeUriString(sb.ToString());
+                sb.Remove(sb.Length - 1, 1);
 
-				uri = ub.Uri;
-			}
-			else
-			{
-				uri = new Uri(url);
-			}
+                ub.Query = Uri.EscapeUriString(sb.ToString());
 
-			return uri;
-		}
-	}
+                uri = ub.Uri;
+            }
+            else
+            {
+                uri = new Uri(url);
+            }
+
+            return uri;
+        }
+    }
 }
