@@ -42,7 +42,7 @@
     <Compile Include="API\DataExchange.cs" />
     <Compile Include="API\PowerManagement.cs" />
     <Compile Include="API\WindowClass.cs" />
-    <Compile Include="API\WindowMessage.cs" />
+    <Compile Include="API\WindowMessages.cs" />
     <Compile Include="API\WindowStyles.cs" />
     <Compile Include="Configuration\RegistryConfigurationProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
