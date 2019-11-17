@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+
 using Xlfdll.Windows.Hardware;
 
 namespace Xlfdll.Windows.Presentation

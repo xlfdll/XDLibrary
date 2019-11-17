@@ -46,6 +46,7 @@
     <Compile Include="ApplicationPackUri.cs" />
     <Compile Include="Behaviors\DoubleClickBehavior.cs" />
     <Compile Include="Behaviors\ListBoxBehaviors.cs" />
+    <Compile Include="Components\ClipboardMonitor.cs" />
     <Compile Include="Converters\BooleanToSingleValueEnumConverter.cs" />
     <Compile Include="Converters\ListViewColumnWidthPercentageConverter.cs" />
     <Compile Include="Dialogs\AboutWindow.xaml.cs">

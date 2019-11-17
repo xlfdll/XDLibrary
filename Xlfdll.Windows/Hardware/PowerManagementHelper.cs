@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Xlfdll.Windows.API;
 
 namespace Xlfdll.Windows.Hardware
