@@ -39,8 +39,10 @@
     <Compile Include="..\BuildInfo.cs">
       <Link>BuildInfo.cs</Link>
     </Compile>
+    <Compile Include="API\DataExchange.cs" />
     <Compile Include="API\PowerManagement.cs" />
     <Compile Include="API\WindowClass.cs" />
+    <Compile Include="API\WindowMessage.cs" />
     <Compile Include="API\WindowStyles.cs" />
     <Compile Include="Configuration\RegistryConfigurationProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
