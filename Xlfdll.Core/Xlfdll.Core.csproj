@@ -52,6 +52,7 @@
     <Compile Include="Infrastructure\Collections\TwoWayMap.cs" />
     <Compile Include="Infrastructure\Numeric\BitOperations.cs" />
     <Compile Include="Infrastructure\Numeric\IntegerConversions.cs" />
+    <Compile Include="Infrastructure\Environment\SpecialFolders.cs" />
     <Compile Include="Infrastructure\Text\AdditionalEncodings.cs" />
     <Compile Include="Infrastructure\Collections\ByteArrayOperations.cs" />
     <Compile Include="Infrastructure\Collections\EnumerableExtensions.cs" />
