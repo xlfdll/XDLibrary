@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,64 +11,78 @@ namespace Xlfdll.Network
 {
     public static class WebOperations
     {
+        private static HttpClient HttpClient { get; } = new HttpClient();
+
         public static String GetContentAsString(String url)
         {
-            return WebOperations.GetContentAsString(url, Encoding.UTF8, null);
+            String content = WebOperations.HttpClient.GetStringAsync(url).Result;
+
+            return WebUtility.HtmlDecode(content);
         }
 
         public static String GetContentAsString(String url, Encoding encoding)
         {
-            return WebOperations.GetContentAsString(url, encoding, null);
+            String content = encoding.GetString(WebOperations.HttpClient.GetByteArrayAsync(url).Result);
+
+            return WebUtility.HtmlDecode(content);
         }
 
-        public static String GetContentAsString(String url, Encoding encoding, IEnumerable<KeyValuePair<String, String>> query)
+        public static String GetContentAsString(String url, IEnumerable<KeyValuePair<String, String>> queries)
         {
-            Uri uri = WebOperations.GenerateUri(url, query);
+            Uri uri = WebOperations.GenerateUri(url, queries);
+            String content = WebOperations.HttpClient.GetStringAsync(uri).Result;
 
-            String result = String.Empty;
+            return WebUtility.HtmlDecode(content);
+        }
 
-            using (WebClient client = new WebClient() { Encoding = encoding })
-            {
-                result = client.DownloadString(uri);
-            }
+        public static String GetContentAsString(String url, IEnumerable<KeyValuePair<String, String>> queries, Encoding encoding)
+        {
+            Uri uri = WebOperations.GenerateUri(url, queries);
+            String content = encoding.GetString(WebOperations.HttpClient.GetByteArrayAsync(uri).Result);
 
-            return WebUtility.HtmlDecode(result);
+            return WebUtility.HtmlDecode(content);
         }
 
         public static async Task<String> GetContentAsStringAsync(String url)
         {
-            return await WebOperations.GetContentAsStringAsync(url, Encoding.UTF8, null);
+            String content = await WebOperations.HttpClient.GetStringAsync(url);
+
+            return WebUtility.HtmlDecode(content);
         }
 
         public static async Task<String> GetContentAsStringAsync(String url, Encoding encoding)
         {
-            return await WebOperations.GetContentAsStringAsync(url, encoding, null);
+            String content = encoding.GetString(await WebOperations.HttpClient.GetByteArrayAsync(url));
+
+            return WebUtility.HtmlDecode(content);
         }
 
-        public static async Task<String> GetContentAsStringAsync(String url, Encoding encoding, IEnumerable<KeyValuePair<String, String>> query)
+        public static async Task<String> GetContentAsStringAsync(String url, IEnumerable<KeyValuePair<String, String>> queries)
         {
-            Uri uri = WebOperations.GenerateUri(url, query);
+            Uri uri = WebOperations.GenerateUri(url, queries);
+            String content = await WebOperations.HttpClient.GetStringAsync(uri);
 
-            String result = String.Empty;
-
-            using (WebClient client = new WebClient() { Encoding = encoding })
-            {
-                result = await client.DownloadStringTaskAsync(uri);
-            }
-
-            return WebUtility.HtmlDecode(result);
+            return WebUtility.HtmlDecode(content);
         }
 
-        private static Uri GenerateUri(String url, IEnumerable<KeyValuePair<String, String>> query)
+        public static async Task<String> GetContentAsStringAsync(String url, IEnumerable<KeyValuePair<String, String>> queries, Encoding encoding)
+        {
+            Uri uri = WebOperations.GenerateUri(url, queries);
+            String content = encoding.GetString(await WebOperations.HttpClient.GetByteArrayAsync(uri));
+
+            return WebUtility.HtmlDecode(content);
+        }
+
+        public static Uri GenerateUri(String url, IEnumerable<KeyValuePair<String, String>> queries)
         {
             Uri uri = null;
 
-            if (query != null)
+            if (queries != null)
             {
                 UriBuilder ub = new UriBuilder(url);
                 StringBuilder sb = new StringBuilder();
 
-                query.ForEach
+                queries.ForEach
                 (
                     (pair) =>
                     {
