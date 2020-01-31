@@ -118,5 +118,16 @@ namespace Xlfdll.Diagnostics
         }
 
         #endregion
+
+        #region Static Assembly Accessors
+
+        public static AssemblyMetadata ExecutingAssemblyMetadata { get; }
+            = new AssemblyMetadata(Assembly.GetExecutingAssembly());
+        public static AssemblyMetadata EntryAssemblyMetadata { get; }
+            = new AssemblyMetadata(Assembly.GetEntryAssembly());
+        public static AssemblyMetadata CallingAssemblyMetadata { get; }
+            = new AssemblyMetadata(Assembly.GetCallingAssembly());
+
+        #endregion
     }
 }
