@@ -60,6 +60,7 @@
     <Compile Include="Infrastructure\ObservableObject.cs" />
     <Compile Include="Infrastructure\Text\StringExtensions.cs" />
     <Compile Include="IO\FileInfoExtensions.cs" />
+    <Compile Include="IO\PathExtensions.cs" />
     <Compile Include="Localization\ILanguagePackProcessor.cs" />
     <Compile Include="Localization\LanguageDictionary.cs" />
     <Compile Include="Localization\LocalizationExtensions.cs" />
