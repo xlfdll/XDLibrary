@@ -9,7 +9,6 @@ namespace Xlfdll.IO
         public static String GetSafeFileName(String fileName)
         {
             Char[] invalidFileNameChars = Path.GetInvalidFileNameChars();
-
             StringBuilder sb = new StringBuilder(fileName);
 
             foreach (Char c in invalidFileNameChars)
@@ -23,7 +22,6 @@ namespace Xlfdll.IO
         public static String GetSafePath(String path)
         {
             Char[] invalidPathChars = Path.GetInvalidPathChars();
-
             StringBuilder sb = new StringBuilder(path);
 
             foreach (Char c in invalidPathChars)
