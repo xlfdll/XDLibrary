@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlfdll.Windows.Presentation
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlfdll.Windows.Forms", "Xlfdll.Windows.Forms\Xlfdll.Windows.Forms.csproj", "{45BF6FB2-6AC7-4F05-94B9-FD4CC21F2548}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlfdll.Web", "Xlfdll.Web\Xlfdll.Web.csproj", "{DA95BEE1-3C08-4E33-9671-4D0850FA0757}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlfdll.Data.Access", "Xlfdll.Data.Access\Xlfdll.Data.Access.csproj", "{45D5FF47-C644-4449-83FA-9D25DD66D9A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlfdll.Data.MySQL", "Xlfdll.Data.MySQL\Xlfdll.Data.MySQL.csproj", "{09586C8D-5DA8-4F81-8A8E-DDB1C72E0818}"
@@ -49,10 +47,6 @@ Global
 		{45BF6FB2-6AC7-4F05-94B9-FD4CC21F2548}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45BF6FB2-6AC7-4F05-94B9-FD4CC21F2548}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45BF6FB2-6AC7-4F05-94B9-FD4CC21F2548}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA95BEE1-3C08-4E33-9671-4D0850FA0757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA95BEE1-3C08-4E33-9671-4D0850FA0757}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA95BEE1-3C08-4E33-9671-4D0850FA0757}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA95BEE1-3C08-4E33-9671-4D0850FA0757}.Release|Any CPU.Build.0 = Release|Any CPU
 		{45D5FF47-C644-4449-83FA-9D25DD66D9A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45D5FF47-C644-4449-83FA-9D25DD66D9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45D5FF47-C644-4449-83FA-9D25DD66D9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
