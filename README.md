@@ -12,7 +12,6 @@ This repository contains common code files used by other XDWS projects in .NET p
 * **Xlfdll.Xamarin.Forms**: Contains support extensions and helpers for use in Xamarin.Forms framework
 * **Xlfdll.Xamarin.Android**: Contains specific support components (localization, etc.) for use in Xamarin.iOS platform
 * **Xlfdll.Xamarin.iOS**: Contains specific support components (localization, etc.) for use in Xamarin.Android platform
-* **Xlfdll.Web**: Contains extensions and additional resources for Web development
 
 ## Development Prerequisites
 For most of the .NET components, the following platforms are recommended:
