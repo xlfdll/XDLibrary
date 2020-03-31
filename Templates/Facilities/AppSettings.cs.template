@@ -1,0 +1,78 @@
+﻿using System;
+using System.IO;
+
+using Newtonsoft.Json;
+
+using Xlfdll.Text;
+
+using <Insert App Name Here>.Properties;
+
+namespace <Insert App Name Here>
+{
+    public class AppSettings
+    {
+        static AppSettings()
+        {
+            AppSettings.Location = Environment.CurrentDirectory;
+
+            try
+            {
+                Directory.GetAccessControl(AppSettings.Location);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                AppSettings.Location = Path.Combine
+                    (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                    @"Xlfdll\<Insert App Name Here>");
+            }
+        }
+
+        #region Entries
+
+        public String DisplayLanguage { get; set; } = "en-us";
+        <Insert Entries Here>
+
+        #endregion
+
+        #region File Methods
+
+        public void Save()
+        {
+            this.Save(AppSettings.FullPath);
+        }
+
+        public void Save(String fileName)
+        {
+            String contents = JsonConvert.SerializeObject(this, Formatting.Indented);
+
+            File.WriteAllText(fileName, contents, AdditionalEncodings.UTF8WithoutBOM);
+        }
+
+        public static void Create()
+        {
+            if (!File.Exists(AppSettings.FullPath))
+            {
+                AppSettings appSettings = new AppSettings();
+
+                appSettings.Save();
+            }
+        }
+
+        public static AppSettings Load()
+        {
+            return AppSettings.Load(AppSettings.FullPath);
+        }
+
+        public static AppSettings Load(String fileName)
+        {
+            String contents = File.ReadAllText(fileName, AdditionalEncodings.UTF8WithoutBOM);
+
+            return JsonConvert.DeserializeObject<AppSettings>(contents);
+        }
+
+        #endregion
+
+        private static String Location { get; }
+        private static String FullPath => Path.Combine(AppSettings.Location, Resources.AppSettingsFileName);
+    }
+}
