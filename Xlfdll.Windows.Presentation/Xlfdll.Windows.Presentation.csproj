@@ -47,6 +47,9 @@
     <Compile Include="Behaviors\DoubleClickBehavior.cs" />
     <Compile Include="Behaviors\ListBoxBehaviors.cs" />
     <Compile Include="Components\ClipboardMonitor.cs" />
+    <Compile Include="Controls\OverlayStatus.xaml.cs">
+      <DependentUpon>OverlayStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BooleanToSingleValueEnumConverter.cs" />
     <Compile Include="Converters\ListViewColumnWidthPercentageConverter.cs" />
     <Compile Include="Dialogs\AboutWindow.xaml.cs">
@@ -73,6 +76,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\OverlayStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
