@@ -69,7 +69,7 @@ namespace Xlfdll.Windows.Presentation.Controls
             "OverlayTextSize",
             typeof(Double),
             typeof(OverlayStatus),
-            new FrameworkPropertyMetadata(24));
+            new FrameworkPropertyMetadata(24.0));
 
         public static readonly DependencyProperty OverlayTextForegroundProperty = DependencyProperty.Register(
             "OverlayTextForeground",
