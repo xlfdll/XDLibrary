@@ -24,6 +24,11 @@ namespace <Insert App Name Here>
                 AppSettings.Location = Path.Combine
                     (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                     @"Xlfdll\<Insert App Name Here>");
+
+                if (!Directory.Exists(AppSettings.Location))
+                {
+                    Directory.CreateDirectory(AppSettings.Location);
+                }
             }
         }
 
