@@ -186,7 +186,7 @@ namespace Xlfdll.Data.SQLite
             {
                 try
                 {
-                    if (command.CommandText.StartsWith("SELECT", StringComparison.InvariantCultureIgnoreCase))
+                    if (command.CommandText.StartsWith("SELECT", StringComparison.OrdinalIgnoreCase))
                     {
                         ProcessSelectCommand(command);
                     }
