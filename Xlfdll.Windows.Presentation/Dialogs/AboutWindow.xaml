@@ -11,7 +11,7 @@
             </Style>
             <Style TargetType="Button">
                 <Setter Property="HorizontalAlignment" Value="Center"/>
-                
+
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
 
@@ -29,7 +29,7 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <Image x:Name="AboutImage" Grid.Row="1"/>
+        <Image x:Name="AboutImage" Grid.Row="1" Stretch="None"/>
 
         <TextBlock Grid.Row="3" Text="{Binding Path=AssemblyTitle}"/>
         <TextBlock Grid.Row="4" Text="{Binding Path=AssemblyVersion}"/>
