@@ -12,6 +12,11 @@
         <Setter Property="MinWidth" Value="100"/>
     </Style>
 
+    <!-- ComboBox Styles -->
+    <Style TargetType="ComboBox">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
     <!-- ListView Styles -->
     <Style TargetType="GridViewColumnHeader">
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
