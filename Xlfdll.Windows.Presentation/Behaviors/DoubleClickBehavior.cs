@@ -27,6 +27,16 @@ namespace Xlfdll.Windows.Presentation
             element.SetValue(CommandParameterProperty, value);
         }
 
+        public static Boolean GetIsInputViewIgnored(DependencyObject element)
+        {
+            return (Boolean)element.GetValue(IsInputViewIgnoredProperty);
+        }
+
+        public static void SetIsInputViewIgnored(DependencyObject element, Boolean value)
+        {
+            element.SetValue(IsInputViewIgnoredProperty, value);
+        }
+
         public static readonly DependencyProperty CommandProperty
             = DependencyProperty.RegisterAttached("Command", typeof(ICommand), typeof(DoubleClickBehavior),
                 new PropertyMetadata(default(ICommand), OnCommandChanged));
@@ -35,26 +45,40 @@ namespace Xlfdll.Windows.Presentation
             = DependencyProperty.RegisterAttached("CommandParameter", typeof(Object), typeof(DoubleClickBehavior),
                 new PropertyMetadata(default(Object)));
 
+        public static readonly DependencyProperty IsInputViewIgnoredProperty
+            = DependencyProperty.RegisterAttached("IsInputViewIgnored", typeof(Boolean), typeof(DoubleClickBehavior),
+                new PropertyMetadata(true));
+
         private static void OnCommandChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             Control control = sender as Control;
 
-            if (control == null)
+            if (control != null)
+            {
+                control.MouseDoubleClick -= DoubleClickBehavior.OnDoubleClick;
+
+                if (GetCommand(control) != null)
+                {
+                    control.MouseDoubleClick += DoubleClickBehavior.OnDoubleClick;
+                }
+            }
+            else
             {
                 throw new InvalidOperationException($"This property can only be attached to {nameof(Control)}");
-            }
-
-            control.MouseDoubleClick -= DoubleClickBehavior.OnDoubleClick;
-
-            if (GetCommand(control) != null)
-            {
-                control.MouseDoubleClick += DoubleClickBehavior.OnDoubleClick;
             }
         }
 
         private static void OnDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DependencyObject dependencyObject = sender as DependencyObject;
+
+            if (DoubleClickBehavior.GetIsInputViewIgnored(dependencyObject))
+            {
+                if (e.OriginalSource.GetType().Name.Contains("TextBox"))
+                {
+                    return;
+                }
+            }
 
             if (dependencyObject != null)
             {
