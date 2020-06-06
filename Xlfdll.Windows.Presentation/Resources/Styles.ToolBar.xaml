@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="ModernStatusBarStyle" TargetType="StatusBar">
+    <Style x:Key="ModernToolBarStyle" TargetType="ToolBar">
         <Style.Resources>
             <!-- Remember to set ToolBar's row a fixed height, or button size may not be consistent -->
             <Style TargetType="StackPanel">
