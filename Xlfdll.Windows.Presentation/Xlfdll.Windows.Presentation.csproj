@@ -51,6 +51,7 @@
       <DependentUpon>OverlayStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BooleanToSingleValueEnumConverter.cs" />
+    <Compile Include="Converters\FilePathToFileNameConverter.cs" />
     <Compile Include="Converters\ListViewColumnWidthPercentageConverter.cs" />
     <Compile Include="Dialogs\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
