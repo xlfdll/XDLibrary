@@ -51,6 +51,7 @@
     <Compile Include="Diagnostics\AssemblyMetadata.cs" />
     <Compile Include="Diagnostics\ProcessHelper.cs" />
     <Compile Include="Infrastructure\Collections\TwoWayMap.cs" />
+    <Compile Include="Infrastructure\Events\ExceptionEventArgs.cs" />
     <Compile Include="Infrastructure\Numeric\BitOperations.cs" />
     <Compile Include="Infrastructure\Numeric\IntegerConversions.cs" />
     <Compile Include="Infrastructure\Environment\SpecialFolders.cs" />
