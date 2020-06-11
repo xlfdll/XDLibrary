@@ -53,6 +53,8 @@
     <Compile Include="Converters\BooleanToSingleValueEnumConverter.cs" />
     <Compile Include="Converters\FilePathToFileNameConverter.cs" />
     <Compile Include="Converters\ListViewColumnWidthPercentageConverter.cs" />
+    <Compile Include="Converters\ValueAdditionConverter.cs" />
+    <Compile Include="Converters\ValueSubtractionConverter.cs" />
     <Compile Include="Dialogs\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
