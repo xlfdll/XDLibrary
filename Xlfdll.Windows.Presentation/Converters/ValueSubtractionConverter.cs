@@ -14,7 +14,7 @@ namespace Xlfdll.Windows.Presentation
 
         public Object Convert(Object value, Type targetType, Object parameter, CultureInfo culture)
         {
-            return (Double)value - (Double)parameter;
+            return (Double)value - Double.Parse(parameter.ToString());
         }
 
         public Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture)
