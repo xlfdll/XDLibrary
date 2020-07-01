@@ -13,6 +13,7 @@ namespace Xlfdll.Windows.Security
         {
             WindowsIdentity identity = WindowsIdentity.GetCurrent();
             WindowsPrincipal principal = new WindowsPrincipal(identity);
+
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
@@ -29,7 +30,7 @@ namespace Xlfdll.Windows.Security
             {
                 if (!waitElevatedProcess)
                 {
-                    Process.Start(info);
+                    using (Process.Start(info)) { }
                 }
                 else
                 {
