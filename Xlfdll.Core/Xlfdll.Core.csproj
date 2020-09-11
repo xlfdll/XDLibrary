@@ -46,6 +46,7 @@
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Configuration\ConfigurationSection.cs" />
     <Compile Include="Configuration\IConfigurationProcessor.cs" />
+    <Compile Include="Data\DataSetExtensions.cs" />
     <Compile Include="Data\IDirectDataOperator.cs" />
     <Compile Include="Data\IQueuedDataOperator.cs" />
     <Compile Include="Diagnostics\AssemblyMetadata.cs" />
