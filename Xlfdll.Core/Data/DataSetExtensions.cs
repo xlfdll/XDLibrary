@@ -8,7 +8,7 @@ namespace Xlfdll.Data
 {
     public static class DataSetExtensions
     {
-        public static String ToCSV(this DataTable dataTable)
+        public static String ToCSVString(this DataTable dataTable)
         {
             StringBuilder sb = new StringBuilder();
             IEnumerable<String> columnNames = dataTable.Columns.Cast<DataColumn>().
