@@ -11,30 +11,38 @@
             </Style>
             <Style TargetType="Button">
                 <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
 
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
 
-                <Setter Property="Width" Value="100"/>
+                <Setter Property="MinWidth" Value="100"/>
+                <Setter Property="MinHeight" Value="30"/>
+                <Setter Property="Margin" Value="15"/>
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="15"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="15"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Image x:Name="AboutImage" Grid.Row="1" Stretch="None"/>
+        <Image Grid.Row="0" Source="{Binding Path=Logo}" Stretch="None"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Margin="15"/>
 
-        <TextBlock Grid.Row="3" Text="{Binding Path=AssemblyTitle}"/>
-        <TextBlock Grid.Row="4" Text="{Binding Path=AssemblyVersion}"/>
-        <TextBlock Grid.Row="5" Text="{Binding Path=AssemblyCopyright}"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="30"/>
+            </Grid.RowDefinitions>
 
-        <Button Grid.Row="6" Content="OK" IsDefault="True" IsCancel="True"/>
+            <TextBlock Grid.Row="0" Text="{Binding Path=AssemblyTitle}"/>
+            <TextBlock Grid.Row="1" Text="{Binding Path=AssemblyVersion}"/>
+            <TextBlock Grid.Row="2" Text="{Binding Path=AssemblyCopyright}"/>
+        </Grid>
+
+        <Button Grid.Row="2" Content="OK" IsDefault="True" IsCancel="True"/>
     </Grid>
 </Window>

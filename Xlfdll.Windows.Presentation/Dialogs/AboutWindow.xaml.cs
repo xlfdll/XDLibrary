@@ -25,19 +25,32 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             this.DataContext = assemblyMetadata;
         }
 
-        public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, ImageSource aboutImageSource)
+        public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, ImageSource logoImageSource)
             : this(ownerWindow, assemblyMetadata)
         {
-            AboutImage.Source = aboutImageSource;
+            this.Logo = logoImageSource;
         }
 
-        public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, Uri aboutImageUri)
-            : this(ownerWindow, assemblyMetadata, new BitmapImage(aboutImageUri)) { }
+        public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, Uri logoImageUri)
+            : this(ownerWindow, assemblyMetadata, new BitmapImage(logoImageUri)) { }
 
-        public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, String aboutImagePath)
-            : this(ownerWindow, assemblyMetadata, new BitmapImage(new Uri(aboutImagePath))) { }
+        public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, String logoImagePath)
+            : this(ownerWindow, assemblyMetadata, new BitmapImage(new Uri(logoImagePath))) { }
 
-        public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, ApplicationPackUri aboutImagePackUri)
-            : this(ownerWindow, assemblyMetadata, new BitmapImage(aboutImagePackUri)) { }
+        public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, ApplicationPackUri logoImagePackUri)
+            : this(ownerWindow, assemblyMetadata, new BitmapImage(logoImagePackUri)) { }
+
+        #region Dependency Properties
+
+        public ImageSource Logo
+        {
+            get => (ImageSource)this.GetValue(LogoImageProperty);
+            set => this.SetValue(LogoImageProperty, value);
+        }
+
+        public static readonly DependencyProperty LogoImageProperty
+            = DependencyPropertyHelper.Create<ImageSource, AboutWindow>("LogoImage", null);
+
+        #endregion
     }
 }
