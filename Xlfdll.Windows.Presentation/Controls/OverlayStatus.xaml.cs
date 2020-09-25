@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,32 +19,32 @@ namespace Xlfdll.Windows.Presentation.Controls
 
         public Color OverlayBackgroundColor
         {
-            get { return (Color)this.GetValue(OverlayBackgroundColorProperty); }
-            set { this.SetValue(OverlayBackgroundColorProperty, value); }
+            get => (Color)this.GetValue(OverlayBackgroundColorProperty);
+            set => this.SetValue(OverlayBackgroundColorProperty, value);
         }
 
         public Double OverlayOpacity
         {
-            get { return (Double)this.GetValue(OverlayOpacityProperty); }
-            set { this.SetValue(OverlayOpacityProperty, value); }
+            get => (Double)this.GetValue(OverlayOpacityProperty);
+            set => this.SetValue(OverlayOpacityProperty, value);
         }
 
         public String OverlayText
         {
-            get { return (String)this.GetValue(OverlayTextProperty); }
-            set { this.SetValue(OverlayTextProperty, value); }
+            get => (String)this.GetValue(OverlayTextProperty);
+            set => this.SetValue(OverlayTextProperty, value);
         }
 
         public Double OverlayTextSize
         {
-            get { return (Double)this.GetValue(OverlayTextSizeProperty); }
-            set { this.SetValue(OverlayTextSizeProperty, value); }
+            get => (Double)this.GetValue(OverlayTextSizeProperty);
+            set => this.SetValue(OverlayTextSizeProperty, value);
         }
 
         public Brush OverlayTextForeground
         {
-            get { return (Brush)this.GetValue(OverlayTextForegroundProperty); }
-            set { this.SetValue(OverlayTextForegroundProperty, value); }
+            get => (Brush)this.GetValue(OverlayTextForegroundProperty);
+            set => this.SetValue(OverlayTextForegroundProperty, value);
         }
 
         public static readonly DependencyProperty OverlayBackgroundColorProperty
