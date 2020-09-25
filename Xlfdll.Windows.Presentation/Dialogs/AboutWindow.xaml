@@ -27,7 +27,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Source="{Binding Path=Logo}" Stretch="None"
+        <Image x:Name="LogoImage" Grid.Row="0" Stretch="None"
                HorizontalAlignment="Center" VerticalAlignment="Center"
                Margin="15"/>
 

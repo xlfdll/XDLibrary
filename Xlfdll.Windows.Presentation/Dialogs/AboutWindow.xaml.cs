@@ -28,7 +28,10 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, ImageSource logoImageSource)
             : this(ownerWindow, assemblyMetadata)
         {
-            this.Logo = logoImageSource;
+            // Could not use data binding + dependency property here
+            // Due to the horrible changes in .NET Framework 4.5+
+            // Reference: https://stackoverflow.com/questions/21788855/binding-an-image-in-wpf-mvvm
+            LogoImage.Source = logoImageSource;
         }
 
         public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, Uri logoImageUri)
@@ -39,18 +42,5 @@ namespace Xlfdll.Windows.Presentation.Dialogs
 
         public AboutWindow(Window ownerWindow, AssemblyMetadata assemblyMetadata, ApplicationPackUri logoImagePackUri)
             : this(ownerWindow, assemblyMetadata, new BitmapImage(logoImagePackUri)) { }
-
-        #region Dependency Properties
-
-        public ImageSource Logo
-        {
-            get => (ImageSource)this.GetValue(LogoImageProperty);
-            set => this.SetValue(LogoImageProperty, value);
-        }
-
-        public static readonly DependencyProperty LogoImageProperty
-            = DependencyPropertyHelper.Create<ImageSource, AboutWindow>("LogoImage", null);
-
-        #endregion
     }
 }
