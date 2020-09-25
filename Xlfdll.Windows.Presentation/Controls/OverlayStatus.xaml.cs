@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -47,35 +48,20 @@ namespace Xlfdll.Windows.Presentation.Controls
             set { this.SetValue(OverlayTextForegroundProperty, value); }
         }
 
-        public static readonly DependencyProperty OverlayBackgroundColorProperty = DependencyProperty.Register(
-            "OverlayBackgroundColor",
-            typeof(Color),
-            typeof(OverlayStatus),
-            new FrameworkPropertyMetadata(Colors.White));
+        public static readonly DependencyProperty OverlayBackgroundColorProperty
+            = DependencyPropertyHelper.Create<Color, OverlayStatus>("OverlayBackgroundColor", Colors.White);
 
-        public static readonly DependencyProperty OverlayOpacityProperty = DependencyProperty.Register(
-            "OverlayOpacity",
-            typeof(Double),
-            typeof(OverlayStatus),
-            new FrameworkPropertyMetadata(0.5));
+        public static readonly DependencyProperty OverlayOpacityProperty
+            = DependencyPropertyHelper.Create<Double, OverlayStatus>("OverlayOpacity", 0.5);
 
-        public static readonly DependencyProperty OverlayTextProperty = DependencyProperty.Register(
-            "OverlayText",
-            typeof(String),
-            typeof(OverlayStatus),
-            new FrameworkPropertyMetadata(String.Empty));
+        public static readonly DependencyProperty OverlayTextProperty
+            = DependencyPropertyHelper.Create<String, OverlayStatus>("OverlayText", String.Empty);
 
-        public static readonly DependencyProperty OverlayTextSizeProperty = DependencyProperty.Register(
-            "OverlayTextSize",
-            typeof(Double),
-            typeof(OverlayStatus),
-            new FrameworkPropertyMetadata(24.0));
+        public static readonly DependencyProperty OverlayTextSizeProperty
+            = DependencyPropertyHelper.Create<Double, OverlayStatus>("OverlayTextSize", 24.0);
 
-        public static readonly DependencyProperty OverlayTextForegroundProperty = DependencyProperty.Register(
-            "OverlayTextForeground",
-            typeof(Brush),
-            typeof(OverlayStatus),
-            new FrameworkPropertyMetadata(Brushes.Black));
+        public static readonly DependencyProperty OverlayTextForegroundProperty
+            = DependencyPropertyHelper.Create<Brush, OverlayStatus>("OverlayTextForeground", Brushes.Black);
 
         #endregion
     }
