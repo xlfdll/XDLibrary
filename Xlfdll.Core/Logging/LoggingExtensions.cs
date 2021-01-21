@@ -11,6 +11,9 @@ namespace Xlfdll.Logging
             Exception currentEx = ex;
             Int32 i = 0;
 
+            sb.AppendLine($"[{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}]");
+            sb.AppendLine();
+
             while (currentEx != null)
             {
                 i++;
