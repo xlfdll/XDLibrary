@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Xlfdll.Collections
 {
-	public static class ByteArrayOperations
+    public static class ByteArrayOperations
     {
-        public static String ToHexString(this IEnumerable<Byte> bytes, Boolean upperCase)
+        public static String ToHexString(this IEnumerable<Byte> bytes, Boolean upperCase = false)
         {
             StringBuilder sb = new StringBuilder();
 
