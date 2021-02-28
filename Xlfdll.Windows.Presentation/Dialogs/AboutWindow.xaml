@@ -22,11 +22,11 @@
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition MinWidth="300"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" MinWidth="300">
+        <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
@@ -52,8 +52,7 @@
             <Button Grid.Row="2" Content="OK" IsDefault="True" IsCancel="True"/>
         </Grid>
 
-        <Expander x:Name="LicenseExpander" x:FieldModifier="private" Grid.Column="1"
-                  ExpandDirection="Right">
+        <Expander Grid.Column="1" ExpandDirection="Right">
             <Expander.Header>
                 <TextBlock Text="License">
                     <TextBlock.LayoutTransform>
