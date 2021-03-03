@@ -25,7 +25,8 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         {
             this.Owner = ownerWindow;
             this.Icon = ownerWindow.Icon;
-            this.DataContext = assemblyMetadata;
+
+            MetadataGrid.DataContext = assemblyMetadata;
 
             this.License = licenseText;
         }
