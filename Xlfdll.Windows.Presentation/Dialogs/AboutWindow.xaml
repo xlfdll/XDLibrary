@@ -54,7 +54,7 @@
 
         <Expander Grid.Column="1" ExpandDirection="Right">
             <Expander.Header>
-                <TextBlock Text="License">
+                <TextBlock Text="External Sources">
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="90"/>
                     </TextBlock.LayoutTransform>
@@ -63,7 +63,7 @@
             <Expander.Style>
                 <Style TargetType="Expander" BasedOn="{StaticResource {x:Type Expander}}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=License, RelativeSource={RelativeSource AncestorType=Window}}" Value="{x:Null}">
+                        <DataTrigger Binding="{Binding Path=ExternalSources, RelativeSource={RelativeSource AncestorType=Window}}" Value="{x:Null}">
                             <Setter Property="IsExpanded" Value="False"/>
                             <Setter Property="Visibility" Value="Collapsed"/>
                         </DataTrigger>
@@ -71,7 +71,7 @@
                 </Style>
             </Expander.Style>
 
-            <TextBox Text="{Binding Path=License, RelativeSource={RelativeSource AncestorType=Window}}"
+            <TextBox Text="{Binding Path=ExternalSources, RelativeSource={RelativeSource AncestorType=Window}}"
                      IsReadOnly="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
                      Width="500" Margin="5"/>
         </Expander>

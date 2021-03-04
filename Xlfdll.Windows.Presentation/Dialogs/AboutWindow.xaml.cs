@@ -20,7 +20,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         public AboutWindow
             (Window ownerWindow,
             AssemblyMetadata assemblyMetadata,
-            String licenseText = null)
+            String externalSourceText = null)
             : this()
         {
             this.Owner = ownerWindow;
@@ -28,17 +28,17 @@ namespace Xlfdll.Windows.Presentation.Dialogs
 
             MetadataGrid.DataContext = assemblyMetadata;
 
-            this.License = licenseText;
+            this.ExternalSources = externalSourceText;
         }
 
         public AboutWindow
             (Window ownerWindow,
             AssemblyMetadata assemblyMetadata,
             ImageSource logoImageSource,
-            String licenseText = null)
+            String externalSourceText = null)
             : this(ownerWindow,
                   assemblyMetadata,
-                  licenseText)
+                  externalSourceText)
         {
             // Could not use data binding + dependency property here
             // Due to the horrible changes in .NET Framework 4.5+
@@ -50,34 +50,34 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             (Window ownerWindow,
             AssemblyMetadata assemblyMetadata,
             Uri logoImageUri,
-            String licenseText = null)
+            String externalSourceText = null)
             : this(ownerWindow,
                   assemblyMetadata,
                   new BitmapImage(logoImageUri),
-                  licenseText)
+                  externalSourceText)
         { }
 
         public AboutWindow
             (Window ownerWindow,
             AssemblyMetadata assemblyMetadata,
             String logoImagePath,
-            String licenseText = null)
+            String externalSourceText = null)
             : this(ownerWindow,
                   assemblyMetadata,
                   new BitmapImage(new Uri(logoImagePath)),
-                  licenseText)
+                  externalSourceText)
         { }
 
         #region Dependency Properties
 
-        public String License
+        public String ExternalSources
         {
-            get => (String)this.GetValue(LicenseProperty);
-            private set => this.SetValue(LicenseProperty, value);
+            get => (String)this.GetValue(ExternalSourcesProperty);
+            private set => this.SetValue(ExternalSourcesProperty, value);
         }
 
-        private static readonly DependencyProperty LicenseProperty = DependencyProperty.Register
-            ("License", typeof(String), typeof(AboutWindow), new PropertyMetadata(null));
+        private static readonly DependencyProperty ExternalSourcesProperty = DependencyProperty.Register
+            ("ExternalSources", typeof(String), typeof(AboutWindow), new PropertyMetadata(null));
 
         #endregion
     }
