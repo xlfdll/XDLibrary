@@ -59,6 +59,9 @@
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ExceptionMessageBox.cs" />
+    <Compile Include="Dialogs\WizardWindow.xaml.cs">
+      <DependentUpon>WizardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Functions\ControlExtensions.cs" />
     <Compile Include="Functions\SystemFunctions.cs" />
     <Compile Include="Functions\WindowExtensions.cs" />
@@ -86,6 +89,10 @@
     <Page Include="Dialogs\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\WizardWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Icons.Template.xaml">
       <SubType>Designer</SubType>
