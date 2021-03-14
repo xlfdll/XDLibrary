@@ -10,7 +10,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
     /// <summary>
     /// AboutWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class AboutWindow : Window
+    public partial class AboutWindow
     {
         private AboutWindow()
         {
