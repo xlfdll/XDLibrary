@@ -9,14 +9,14 @@ namespace Xlfdll.Windows.Presentation.Dialogs
     /// <summary>
     /// WizardWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class WizardWindow
+    public partial class PageWizardWindow
     {
-        private WizardWindow()
+        private PageWizardWindow()
         {
             InitializeComponent();
         }
 
-        public WizardWindow(IEnumerable<Uri> pageURIs)
+        public PageWizardWindow(IEnumerable<Uri> pageURIs)
             : this()
         {
             if (pageURIs == null || pageURIs.Count() == 0)
@@ -28,7 +28,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             this.SelectedPageIndex = 0;
         }
 
-        public WizardWindow(IEnumerable<String> pageURIs)
+        public PageWizardWindow(IEnumerable<String> pageURIs)
             : this(pageURIs.Select(p => new Uri(p))) { }
 
         private void WizardWindow_ContentRendered(object sender, EventArgs e)
@@ -48,12 +48,12 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             }
             private set
             {
-                this.CanGoBack = WizardWindow.TrueFunction;
-                this.CanGoNext = WizardWindow.TrueFunction;
-                this.CanCancel = WizardWindow.TrueFunction;
-                this.BeforeGoBack = WizardWindow.TrueFunction;
-                this.BeforeGoNext = WizardWindow.TrueFunction;
-                this.BeforeCancel = WizardWindow.TrueFunction;
+                this.CanGoBack = PageWizardWindow.TrueFunction;
+                this.CanGoNext = PageWizardWindow.TrueFunction;
+                this.CanCancel = PageWizardWindow.TrueFunction;
+                this.BeforeGoBack = PageWizardWindow.TrueFunction;
+                this.BeforeGoNext = PageWizardWindow.TrueFunction;
+                this.BeforeCancel = PageWizardWindow.TrueFunction;
 
                 this.SetValue(SelectedPageIndexProperty, value);
                 this.SetValue(SelectedPageURIProperty, this.PageURIs[value]);
@@ -72,11 +72,11 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         }
 
         public static DependencyProperty SelectedPageIndexProperty = DependencyProperty.Register
-            ("SelectedPageIndex", typeof(Int32), typeof(WizardWindow), new PropertyMetadata(-1));
+            ("SelectedPageIndex", typeof(Int32), typeof(PageWizardWindow), new PropertyMetadata(-1));
         public static DependencyProperty SelectedPageURIProperty = DependencyProperty.Register
-            ("SelectedPageURI", typeof(Uri), typeof(WizardWindow), new PropertyMetadata(null));
+            ("SelectedPageURI", typeof(Uri), typeof(PageWizardWindow), new PropertyMetadata(null));
         public static DependencyProperty IsLastPageProperty = DependencyProperty.Register
-            ("IsLastPage", typeof(Boolean), typeof(WizardWindow), new PropertyMetadata(false));
+            ("IsLastPage", typeof(Boolean), typeof(PageWizardWindow), new PropertyMetadata(false));
 
         #endregion
 
@@ -89,7 +89,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         (
             (window) =>
             {
-                if (window is WizardWindow wizard)
+                if (window is PageWizardWindow wizard)
                 {
                     if (this.BeforeGoBack())
                     {
@@ -99,7 +99,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             },
             (window) =>
             {
-                if (window is WizardWindow wizard)
+                if (window is PageWizardWindow wizard)
                 {
                     return wizard.SelectedPageIndex > 0 && wizard.CanGoBack();
                 }
@@ -112,7 +112,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         (
             (window) =>
             {
-                if (window is WizardWindow wizard)
+                if (window is PageWizardWindow wizard)
                 {
                     if (this.BeforeGoNext())
                     {
@@ -131,7 +131,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             },
             (window) =>
             {
-                if (window is WizardWindow wizard)
+                if (window is PageWizardWindow wizard)
                 {
                     return wizard.CanGoNext();
                 }
@@ -144,7 +144,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         (
             (window) =>
             {
-                if (window is WizardWindow wizard)
+                if (window is PageWizardWindow wizard)
                 {
                     if (wizard.BeforeCancel())
                     {
@@ -156,7 +156,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             },
             (window) =>
             {
-                if (window is WizardWindow wizard)
+                if (window is PageWizardWindow wizard)
                 {
                     return wizard.CanCancel();
                 }
@@ -170,17 +170,17 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         #region Condition Methods
 
         public Func<Boolean> CanGoBack { get; set; }
-            = WizardWindow.TrueFunction;
+            = PageWizardWindow.TrueFunction;
         public Func<Boolean> CanGoNext { get; set; }
-            = WizardWindow.TrueFunction;
+            = PageWizardWindow.TrueFunction;
         public Func<Boolean> CanCancel { get; set; }
-            = WizardWindow.TrueFunction;
+            = PageWizardWindow.TrueFunction;
         public Func<Boolean> BeforeGoBack { get; set; }
-            = WizardWindow.TrueFunction;
+            = PageWizardWindow.TrueFunction;
         public Func<Boolean> BeforeGoNext { get; set; }
-            = WizardWindow.TrueFunction;
+            = PageWizardWindow.TrueFunction;
         public Func<Boolean> BeforeCancel { get; set; }
-            = WizardWindow.TrueFunction;
+            = PageWizardWindow.TrueFunction;
 
         public static readonly Func<Boolean> TrueFunction
             = () => { return true; };
