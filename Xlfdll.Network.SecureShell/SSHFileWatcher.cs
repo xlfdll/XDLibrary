@@ -12,7 +12,10 @@ namespace Xlfdll.Network.SecureShell
     public class SSHFileWatcher : IDisposable
     {
         public SSHFileWatcher(String host, String userName, String password, String path)
-            : this(host, userName, password, path, SSHConstants.DefaultConnectionTimeout, SSHConstants.DefaultOperationTimeout) { }
+            : this(host, userName, password, path,
+                  SSHConstants.DefaultConnectionTimeout,
+                  SSHConstants.DefaultOperationTimeout)
+        { }
 
         public SSHFileWatcher(String host, String userName, String password, String path,
             Int32 connectionTimeout, Int32 operationTimeout)
@@ -21,11 +24,9 @@ namespace Xlfdll.Network.SecureShell
             this.UserName = userName;
             this.Path = path;
 
-            ConnectionInfo connectionInfo = new ConnectionInfo(host, userName,
-                new PasswordAuthenticationMethod(userName, password))
-            {
-                Timeout = TimeSpan.FromSeconds(connectionTimeout)
-            };
+            ConnectionInfo connectionInfo = SSHAuthHelper.CreateConnectionInfo(host, userName, password);
+
+            connectionInfo.Timeout = TimeSpan.FromSeconds(connectionTimeout);
 
             // The default SftpClient.OperationTimeout is Infinite
             this.Client = new SftpClient(connectionInfo)
@@ -35,9 +36,6 @@ namespace Xlfdll.Network.SecureShell
             this.Client.HostKeyReceived += (sender, e) => { e.CanTrust = true; };
 
             this.LineQueue = new ConcurrentQueue<String>();
-
-            this.CancellationTokenSource = new CancellationTokenSource();
-            this.FileWatcherTask = new Task(FileWatcherTaskMain, this.CancellationTokenSource.Token);
         }
 
         public String Host { get; }
@@ -47,12 +45,15 @@ namespace Xlfdll.Network.SecureShell
         public Int32 LineCapacity { get; set; } = 100;
 
         public Boolean IsRunning
-            => (this.FileWatcherTask.Status == TaskStatus.Running);
+            => (this.FileWatcherTask?.Status == TaskStatus.Running);
         public Exception Exception
             => this.FileWatcherTask.Exception;
 
         public void Start()
         {
+            this.CancellationTokenSource = new CancellationTokenSource();
+            this.FileWatcherTask = new Task(FileWatcherTaskMain, this.CancellationTokenSource.Token);
+
             this.FileWatcherTask.Start();
         }
 
@@ -65,13 +66,16 @@ namespace Xlfdll.Network.SecureShell
                 this.FileWatcherTask.Wait();
             }
             catch (AggregateException) { }
+
+            while (!this.LineQueue.IsEmpty)
+            {
+                this.LineQueue.TryDequeue(out String _);
+            }
         }
 
         public String GetLine()
         {
-            String result = null;
-
-            this.LineQueue.TryDequeue(out result);
+            this.LineQueue.TryDequeue(out String result);
 
             return result;
         }
@@ -142,7 +146,7 @@ namespace Xlfdll.Network.SecureShell
 
         private SftpClient Client { get; }
         private ConcurrentQueue<String> LineQueue { get; }
-        private Task FileWatcherTask { get; }
-        private CancellationTokenSource CancellationTokenSource { get; }
+        private Task FileWatcherTask { get; set; }
+        private CancellationTokenSource CancellationTokenSource { get; set; }
     }
 }
