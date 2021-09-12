@@ -34,6 +34,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
@@ -50,6 +51,7 @@
     <Compile Include="Controls\OverlayStatus.xaml.cs">
       <DependentUpon>OverlayStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BitmapToImageConverter.cs" />
     <Compile Include="Converters\BooleanToSingleValueEnumConverter.cs" />
     <Compile Include="Converters\FilePathToFileNameConverter.cs" />
     <Compile Include="Converters\ListViewColumnWidthPercentageConverter.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="Functions\SystemFunctions.cs" />
     <Compile Include="Functions\WindowExtensions.cs" />
     <Compile Include="Helpers\DependencyPropertyHelper.cs" />
+    <Compile Include="Helpers\InteropHelper.cs" />
     <Compile Include="Localization\LocalizationValueConverter.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
