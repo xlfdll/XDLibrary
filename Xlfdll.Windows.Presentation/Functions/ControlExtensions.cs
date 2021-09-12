@@ -79,6 +79,27 @@ namespace Xlfdll.Windows.Presentation
             );
         }
 
+        public static IEnumerable<T> FindVisualChildren<T>(this DependencyObject dependencyObject) where T : DependencyObject
+        {
+            if (dependencyObject != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(dependencyObject); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(dependencyObject, i);
+
+                    if (child != null && child is T)
+                    {
+                        yield return child as T;
+                    }
+
+                    foreach (T childOfChild in child.FindVisualChildren<T>())
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
+        }
+
         public static T GetDescendant<T>(this Visual visual, String name) where T : Visual
         {
             if (visual.GetType() == typeof(T))
