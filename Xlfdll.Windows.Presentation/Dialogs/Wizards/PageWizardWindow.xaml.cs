@@ -37,6 +37,10 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             this.CenterWindowToScreen();
         }
 
+        // The LoadCompleted and DataContextChanged event handlers here are required to update Page's DataContext
+        // Due to WPF content isolation, DataContext will not be passed through Frame to Pages automatically
+        // (Frame-Page was originally designed to run in restricted environment like Internet Explorer)
+
         private void PageFrame_LoadCompleted(object sender, NavigationEventArgs e)
         {
             PageFrame.UpdateContentContext();
