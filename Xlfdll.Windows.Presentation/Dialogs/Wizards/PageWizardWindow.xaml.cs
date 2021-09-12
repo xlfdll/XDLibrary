@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace Xlfdll.Windows.Presentation.Dialogs
 {
@@ -34,6 +35,16 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         private void WizardWindow_ContentRendered(object sender, EventArgs e)
         {
             this.CenterWindowToScreen();
+        }
+
+        private void PageFrame_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            PageFrame.UpdateContentContext();
+        }
+
+        private void PageFrame_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            PageFrame.UpdateContentContext();
         }
 
         public ObservableCollection<Uri> PageURIs { get; }

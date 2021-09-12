@@ -16,7 +16,8 @@
         </Grid.RowDefinitions>
 
         <Frame x:Name="PageFrame" x:FieldModifier="private" Grid.Row="0"
-               Source="{Binding Path=SelectedPageURI, RelativeSource={RelativeSource AncestorType=Window}}"/>
+               Source="{Binding Path=SelectedPageURI, RelativeSource={RelativeSource AncestorType=Window}}"
+               LoadCompleted="PageFrame_LoadCompleted" DataContextChanged="PageFrame_DataContextChanged"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <StackPanel.Resources>

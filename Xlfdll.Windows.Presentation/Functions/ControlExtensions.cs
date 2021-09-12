@@ -151,5 +151,13 @@ namespace Xlfdll.Windows.Presentation
 
             return null;
         }
+
+        public static void UpdateContentContext(this Frame frame)
+        {
+            if (frame.Content is FrameworkElement content)
+            {
+                content.DataContext = frame.DataContext;
+            }
+        }
     }
 }
