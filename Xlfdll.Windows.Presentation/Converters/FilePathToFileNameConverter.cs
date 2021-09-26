@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace Xlfdll.Windows.Presentation
+namespace Xlfdll.Windows.Presentation.Converters
 {
     public class FilePathToFileNameConverter : MarkupExtension, IValueConverter
     {

@@ -12,7 +12,7 @@ namespace Xlfdll.Windows.Presentation
 {
     public static class ListBoxBehaviors
     {
-        #region ScrollOnNewItem Attached Property
+        #region ScrollOnNewItem Attached Properties
 
         public static readonly DependencyProperty ScrollOnNewItemProperty
             = DependencyProperty.RegisterAttached

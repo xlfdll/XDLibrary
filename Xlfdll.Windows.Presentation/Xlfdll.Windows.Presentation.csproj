@@ -51,6 +51,7 @@
     <Compile Include="Controls\OverlayStatus.xaml.cs">
       <DependentUpon>OverlayStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ScrollSynchronizer.cs" />
     <Compile Include="Converters\BitmapToImageConverter.cs" />
     <Compile Include="Converters\BooleanToSingleValueEnumConverter.cs" />
     <Compile Include="Converters\FilePathToFileNameConverter.cs" />

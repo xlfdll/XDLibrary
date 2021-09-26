@@ -4,7 +4,7 @@ using System.Windows.Interop;
 
 using Xlfdll.Windows.API;
 
-namespace Xlfdll.Windows.Presentation
+namespace Xlfdll.Windows.Presentation.Components
 {
     public class ClipboardMonitor : IDisposable
     {
