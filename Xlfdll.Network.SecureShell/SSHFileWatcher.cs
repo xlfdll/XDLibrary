@@ -133,13 +133,13 @@ namespace Xlfdll.Network.SecureShell
 
         public void Dispose()
         {
-            if (this.FileWatcherTask.Status == TaskStatus.Running)
+            if (this.IsRunning)
             {
                 this.Stop();
             }
 
-            this.Client.Dispose();
-            this.CancellationTokenSource.Dispose();
+            this.Client?.Dispose();
+            this.CancellationTokenSource?.Dispose();
         }
 
         #endregion
