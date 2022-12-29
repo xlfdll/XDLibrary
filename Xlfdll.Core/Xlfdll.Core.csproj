@@ -52,7 +52,6 @@
     <Compile Include="Diagnostics\AssemblyMetadata.cs" />
     <Compile Include="Diagnostics\ProcessHelper.cs" />
     <Compile Include="Diagnostics\RedirectedProcess.cs" />
-    <Compile Include="Infrastructure\Collections\NotifiableObservableCollection.cs" />
     <Compile Include="Infrastructure\Collections\TwoWayMap.cs" />
     <Compile Include="Infrastructure\Events\ExceptionEventArgs.cs" />
     <Compile Include="Infrastructure\Numeric\BitOperations.cs" />
