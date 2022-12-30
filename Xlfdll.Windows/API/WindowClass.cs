@@ -7,9 +7,9 @@ namespace Xlfdll.Windows.API
     {
         #region Functions
 
-        [DllImport("User32.dll", SetLastError = true)]
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern Int32 GetWindowLong(IntPtr hWnd, Int32 nIndex);
-        [DllImport("User32.dll", SetLastError = true)]
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern Int32 SetWindowLong(IntPtr hWnd, Int32 nIndex, Int32 dwNewLong);
 
         #endregion
