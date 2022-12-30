@@ -29,7 +29,12 @@ namespace Xlfdll.Windows
     {
         public static String Downloads
             => UserShell.SHGetKnownFolderPath
-                (new Guid("374DE290-123F-4565-9164-39C4925E467B"),
-                (UInt32)KnownFolderFlags.KF_FLAG_DEFAULT, (IntPtr)0);
+                (Guids.Downloads, (UInt32)KnownFolderFlags.KF_FLAG_DEFAULT, IntPtr.Zero);
+
+        private static class Guids
+        {
+            public static Guid Downloads
+                => new Guid("374DE290-123F-4565-9164-39C4925E467B");
+        }
     }
 }
