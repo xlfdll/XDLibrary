@@ -41,10 +41,12 @@
     </Compile>
     <Compile Include="API\DataExchange.cs" />
     <Compile Include="API\PowerManagement.cs" />
+    <Compile Include="API\UserShell.cs" />
     <Compile Include="API\WindowClass.cs" />
     <Compile Include="API\WindowMessages.cs" />
     <Compile Include="API\WindowStyles.cs" />
     <Compile Include="Configuration\RegistryConfigurationProcessor.cs" />
+    <Compile Include="Environment\SpecialFolders.cs" />
     <Compile Include="Hardware\PowerManagementHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\UAC.cs" />
