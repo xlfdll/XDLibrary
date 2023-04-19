@@ -7,10 +7,7 @@ namespace Xlfdll.Diagnostics
 {
     public class RedirectedProcess : IDisposable
     {
-        public RedirectedProcess(String fileName)
-            : this(fileName, null) { }
-
-        public RedirectedProcess(String fileName, String arguments)
+        public RedirectedProcess(String fileName, String arguments = null, Boolean useProcessWorkingDirectory = true)
         {
             this.StartInfo = new ProcessStartInfo(fileName, arguments)
             {
@@ -20,6 +17,12 @@ namespace Xlfdll.Diagnostics
                 RedirectStandardError = true,
                 CreateNoWindow = true
             };
+
+            if (useProcessWorkingDirectory)
+            {
+                this.StartInfo.WorkingDirectory = Path.GetDirectoryName(fileName);
+            }
+
             this.BaseProcess = new Process()
             {
                 StartInfo = this.StartInfo,
