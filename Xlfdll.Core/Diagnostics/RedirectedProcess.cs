@@ -8,7 +8,11 @@ namespace Xlfdll.Diagnostics
 {
     public class RedirectedProcess : IDisposable
     {
-        public RedirectedProcess(String fileName, String arguments = null, Boolean useProcessWorkingDirectory = true)
+        public RedirectedProcess
+            (String fileName,
+            String arguments = null,
+            Boolean useProcessWorkingDirectory = true,
+            Boolean useUTF8Output = true)
         {
             this.StartInfo = new ProcessStartInfo(fileName, arguments)
             {
@@ -17,8 +21,8 @@ namespace Xlfdll.Diagnostics
                 RedirectStandardInput = true,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
-                StandardOutputEncoding = Encoding.UTF8,
-                StandardErrorEncoding = Encoding.UTF8
+                StandardOutputEncoding = useUTF8Output ? Encoding.UTF8 : null,
+                StandardErrorEncoding = useUTF8Output ? Encoding.UTF8 : null
             };
 
             if (useProcessWorkingDirectory)
