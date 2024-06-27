@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29009.5
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlfdll.Core", "Xlfdll.Core\Xlfdll.Core.csproj", "{B82EB204-2388-4BCF-B138-EF627FD1F775}"
 EndProject
@@ -18,12 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlfdll.Data.SQLite", "Xlfdll.Data.SQLite\Xlfdll.Data.SQLite.csproj", "{379F4D7E-F0B3-46A7-8C59-6717276157D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlfdll.Network.SecureShell", "Xlfdll.Network.SecureShell\Xlfdll.Network.SecureShell.csproj", "{F759EB3D-DA5B-43D0-A081-F472C607EC0A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xlfdll.Xamarin.Forms", "Xlfdll.Xamarin.Forms\Xlfdll.Xamarin.Forms.csproj", "{08D7A712-02E0-4188-91BE-52AA5EBD7DA6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlfdll.Xamarin.Android", "Xlfdll.Xamarin.Android\Xlfdll.Xamarin.Android.csproj", "{FF727A6F-1661-42AF-9519-1ECE63FF81E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlfdll.Xamarin.iOS", "Xlfdll.Xamarin.iOS\Xlfdll.Xamarin.iOS.csproj", "{077EE443-E482-4D96-A1D1-C60342602B29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,18 +57,6 @@ Global
 		{F759EB3D-DA5B-43D0-A081-F472C607EC0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F759EB3D-DA5B-43D0-A081-F472C607EC0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F759EB3D-DA5B-43D0-A081-F472C607EC0A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08D7A712-02E0-4188-91BE-52AA5EBD7DA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08D7A712-02E0-4188-91BE-52AA5EBD7DA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08D7A712-02E0-4188-91BE-52AA5EBD7DA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08D7A712-02E0-4188-91BE-52AA5EBD7DA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF727A6F-1661-42AF-9519-1ECE63FF81E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF727A6F-1661-42AF-9519-1ECE63FF81E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF727A6F-1661-42AF-9519-1ECE63FF81E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF727A6F-1661-42AF-9519-1ECE63FF81E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{077EE443-E482-4D96-A1D1-C60342602B29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{077EE443-E482-4D96-A1D1-C60342602B29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{077EE443-E482-4D96-A1D1-C60342602B29}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{077EE443-E482-4D96-A1D1-C60342602B29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
