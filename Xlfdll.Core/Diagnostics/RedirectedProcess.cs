@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Xlfdll.Diagnostics
@@ -12,10 +13,12 @@ namespace Xlfdll.Diagnostics
             this.StartInfo = new ProcessStartInfo(fileName, arguments)
             {
                 UseShellExecute = false,
+                CreateNoWindow = true,
                 RedirectStandardInput = true,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
-                CreateNoWindow = true
+                StandardOutputEncoding = Encoding.UTF8,
+                StandardErrorEncoding = Encoding.UTF8
             };
 
             if (useProcessWorkingDirectory)
