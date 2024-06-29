@@ -13,7 +13,7 @@ namespace Xlfdll.Windows.API
     #region Constants
 
     [Flags]
-    public enum KnownFolderFlags: UInt32
+    public enum KnownFolderFlags : UInt32
     {
         KF_FLAG_DEFAULT = 0x00000000,
         KF_FLAG_FORCE_APP_DATA_REDIRECTION = 0x00080000,
