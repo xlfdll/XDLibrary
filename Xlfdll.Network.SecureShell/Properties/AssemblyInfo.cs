@@ -33,4 +33,4 @@ using Xlfdll;
 // すべての値を指定するか、次を使用してビルド番号とリビジョン番号を既定に設定できます
 // 既定値にすることができます:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0." + +BuildInfo.Build)]
+[assembly: AssemblyVersion("1.0." + BuildInfo.Build)]
