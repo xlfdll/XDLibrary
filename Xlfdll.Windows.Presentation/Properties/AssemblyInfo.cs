@@ -11,7 +11,7 @@ using Xlfdll;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Xlfdll Workstation")]
 [assembly: AssemblyProduct("Xlfdll .NET Library")]
-[assembly: AssemblyCopyright("© 2015 Xlfdll Workstation")]
+[assembly: AssemblyCopyright("© 2015-2024 Xlfdll Workstation")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
