@@ -21,4 +21,4 @@ For most of the .NET components, the following platforms are recommended:
 
 Most of the methods and data types should be able to work in latest .NET Core platform, though this is not tested yet. The majority of the code files should also be able to use in older versions of .NET Framework, with no or minor modifications (possibly except the ones that use latest C# language features, such as ObservableObject class in Xlfdll.Windows.Presentation component). 
 
-Before the build, generate-build-number.sh needs to be executed in a Git / Bash shell to generate build information code file (BuildInfo.cs).
+Before the build, generate-build-number.sh needs to be executed in a Git / Bash shell to generate build information code file (`BuildInfo.cs`).
